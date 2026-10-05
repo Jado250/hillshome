@@ -15,6 +15,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     { href: "/admin/tours", label: "Tours", show: can(session.role, "tours:manage") },
     { href: "/admin/services", label: "Services", show: can(session.role, "services:manage") },
     { href: "/admin/quotes", label: "Quotes", show: can(session.role, "quotes:manage") },
+    { href: "/admin/gallery", label: "Gallery", show: can(session.role, "gallery:manage") },
     { href: "/admin/customers", label: "Customers", show: can(session.role, "requests:manage") },
     { href: "/admin/staff", label: "Staff", show: can(session.role, "staff:manage") },
     { href: "/admin/reports", label: "Reports", show: can(session.role, "reports:view") },

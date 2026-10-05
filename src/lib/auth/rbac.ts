@@ -1,13 +1,13 @@
 import { getSession, type SessionUser } from "./session";
 
 export type Permission =
-  | "staff:manage" | "services:manage" | "tours:manage"
+  | "staff:manage" | "services:manage" | "tours:manage" | "gallery:manage"
   | "requests:manage" | "requests:view-assigned" | "quotes:manage"
   | "reports:view" | "settings:manage";
 
 const MATRIX: Record<SessionUser["role"], Permission[]> = {
-  SUPER_ADMIN: ["staff:manage","services:manage","tours:manage","requests:manage","requests:view-assigned","quotes:manage","reports:view","settings:manage"],
-  ADMIN: ["tours:manage","requests:manage","requests:view-assigned","quotes:manage","reports:view"],
+  SUPER_ADMIN: ["staff:manage","services:manage","tours:manage","gallery:manage","requests:manage","requests:view-assigned","quotes:manage","reports:view","settings:manage"],
+  ADMIN: ["tours:manage","services:manage","gallery:manage","requests:manage","requests:view-assigned","quotes:manage","reports:view"],
   STAFF: ["requests:view-assigned"],
 };
 

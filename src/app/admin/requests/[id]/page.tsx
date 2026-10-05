@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { getSession } from "@/lib/auth/session";
 import { can } from "@/lib/auth/rbac";
 import { RequestActions } from "@/components/admin/RequestActions";
+import { QuoteForm } from "@/components/admin/QuoteForm";
 
 export const dynamic = "force-dynamic";
 
@@ -43,6 +44,13 @@ export default async function RequestDetail({ params }: { params: Promise<{ id: 
       )}
       <RequestActions id={r.id} status={r.status} assigneeId={r.assigneeId} staff={staff}
         canAssign={can(session.role, "requests:manage")} />
+      <section className="bg-white p-5"><h2 className="font-semibold">Quotes</h2>
+        {r.quotes.length === 0 ? <p className="mt-2 text-sm">No quotes yet.</p> : (
+          <ul className="mt-2 space-y-1 text-sm">{r.quotes.map((q) => (
+            <li key={q.id}>{q.currency} {q.amount.toString()} · {q.status} · {q.details.slice(0, 80)}</li>))}</ul>
+        )}
+        {can(session.role, "quotes:manage") && <QuoteForm requestId={r.id} />}
+      </section>
       <section className="bg-white p-5"><h2 className="font-semibold">Internal notes</h2>
         {r.notes.length === 0 ? <p className="mt-2 text-sm">No notes yet.</p> :
           <ul className="mt-2 space-y-2 text-sm">{r.notes.map((n) => <li key={n.id}><b>{n.author.name}:</b> {n.body}</li>)}</ul>}</section>

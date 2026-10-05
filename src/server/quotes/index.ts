@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { HttpError } from "@/lib/auth/rbac";
 import type { SessionUser } from "@/lib/auth/session";
 import { recordAudit } from "@/server/audit";
+import { notifyQuoteCreated } from "@/server/notifications";
 
 export async function createQuote(
   user: SessionUser,
@@ -18,6 +19,8 @@ export async function createQuote(
       },
     });
     await recordAudit(tx, user.id, "quote.created", "Quote", quote.id, { reference: request.reference });
+    notifyQuoteCreated(request, quote.amount.toString(), quote.currency, quote.details, quote.validUntil)
+      .catch((e) => console.error("notify failed", e));
     return quote;
   });
 }

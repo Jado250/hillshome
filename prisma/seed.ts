@@ -106,6 +106,25 @@ async function main() {
     },
   });
 
+  // Demo gallery placeholders (SVG solid-colour images, isDemo labelled).
+  const gallery = [
+    { categorySlug: "transport", title: "Fleet on the road" },
+    { categorySlug: "construction", title: "Residential build" },
+    { categorySlug: "cleaning-maintenance", title: "Facility cleaning" },
+    { categorySlug: "it-digital", title: "Website project" },
+    { categorySlug: "multimedia", title: "Event photography" },
+    { categorySlug: "tours", title: "Guided tour group" },
+  ];
+  for (const g of gallery) {
+    const url = `/demo/${g.categorySlug === "cleaning-maintenance" ? "cleaning" : g.categorySlug === "it-digital" ? "it" : g.categorySlug}.svg`;
+    const exists = await prisma.galleryItem.findFirst({ where: { url } });
+    if (!exists) {
+      await prisma.galleryItem.create({
+        data: { categorySlug: g.categorySlug, title: g.title, url, alt: `${g.title} (demo)`, isDemo: true },
+      });
+    }
+  }
+
   // Editable placeholders: never invent company facts.
   const settings: Record<string, unknown> = {
     "company.name": "Hillshome Tours Company LTD",
@@ -123,12 +142,25 @@ async function main() {
       "Clear quotations — nothing is confirmed until you approve it",
       "A request reference and status updates you can follow",
     ],
-    "home.testimonials": [],
-    "home.faq": [],
+    "home.testimonials": [
+      { name: "[Demo] Client", role: "Replace with a real testimonial", quote: "Placeholder testimonial — edit or delete this in Admin → Settings." },
+    ],
+    "home.faq": [
+      { q: "How do I request a service?", a: "Pick a service, fill in the form, and you will receive a reference number. Our team reviews it and gets back to you with a quotation." },
+      { q: "Is my booking confirmed immediately?", a: "No. A request starts as pending. We confirm availability, requirements and price before confirming anything." },
+      { q: "Do you offer payment options?", a: "Payment integration is planned for a later phase. Details are shared with your quotation." },
+    ],
   };
   for (const [key, value] of Object.entries(settings)) {
     await prisma.siteSetting.upsert({
       where: { key }, update: {}, create: { key, value: value as never },
+    });
+  }
+  // Demo-only keys: always refresh so the site shows placeholder FAQ/testimonials until replaced.
+  for (const key of ["home.testimonials", "home.faq"] as const) {
+    await prisma.siteSetting.upsert({
+      where: { key }, update: { value: settings[key] as never },
+      create: { key, value: settings[key] as never },
     });
   }
 

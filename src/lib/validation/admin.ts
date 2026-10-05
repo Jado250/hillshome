@@ -75,4 +75,4 @@ export const settingsSchema = z.object({
   "home.whyChoose": settingValue.optional(),
   "home.testimonials": settingValue.optional(),
   "home.faq": settingValue.optional(),
-});
+}).strict();

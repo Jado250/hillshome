@@ -3,6 +3,7 @@ import { HttpError } from "@/lib/auth/rbac";
 import type { RequestStatus } from "@prisma/client";
 import type { SessionUser } from "@/lib/auth/session";
 import { recordAudit } from "@/server/audit";
+import { notifyStatusChanged } from "@/server/notifications";
 
 export async function updateRequest(
   id: string,
@@ -35,6 +36,11 @@ export async function updateRequest(
     if (input.note) {
       await tx.internalNote.create({ data: { requestId: id, authorId: user.id, body: input.note } });
     }
-    return tx.serviceRequest.findUnique({ where: { id } });
+    const updated = await tx.serviceRequest.findUnique({ where: { id } });
+    if (input.status && updated && input.status !== existing.status) {
+      // Fire-and-forget: email failures must not break the update.
+      notifyStatusChanged(updated, existing.status, input.status).catch((e) => console.error("notify failed", e));
+    }
+    return updated;
   });
 }
