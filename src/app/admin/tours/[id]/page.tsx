@@ -3,6 +3,7 @@ import { getSession } from "@/lib/auth/session";
 import { can } from "@/lib/auth/rbac";
 import { db } from "@/lib/db";
 import { TourForm } from "@/components/admin/TourForm";
+import { BackButton } from "@/components/BackButton";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +16,8 @@ export default async function EditTour({ params }: { params: Promise<{ id: strin
   if (!t) notFound();
   return (
     <div>
-      <h1 className="text-3xl font-semibold">Edit tour</h1>
+      <BackButton fallback="/admin/tours" label="All tours" />
+      <h1 className="mt-4 text-3xl font-semibold">Edit tour</h1>
       <TourForm method="PATCH" action={`/api/admin/tours/${t.id}`} initial={{
         name: t.name, destination: t.destination, durationDays: t.durationDays,
         shortDescription: t.shortDescription, description: t.description,

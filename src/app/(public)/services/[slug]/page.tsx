@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCategory } from "@/server/services";
+import { BackButton } from "@/components/BackButton";
 
 export const dynamic = "force-dynamic";
 type P = { params: Promise<{ slug: string }> };
@@ -23,6 +24,8 @@ export default async function ServiceDetail({ params }: P) {
         </div>
       </section>
       <div className="container-x py-12">
+        <BackButton fallback="/services" label="All services" />
+        <div className="mt-8">
         {c.slug === "tours" ? (
           <Link href="/tours" className="btn-navy">Browse tours</Link>
         ) : (
@@ -36,6 +39,7 @@ export default async function ServiceDetail({ params }: P) {
             <Link href={`/request?category=${c.slug}`} className="btn-gold mt-8">Request this service</Link>
           </>
         )}
+        </div>
       </div>
     </>
   );
