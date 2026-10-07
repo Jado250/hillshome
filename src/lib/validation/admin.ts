@@ -47,6 +47,14 @@ export const servicePatchSchema = z.object({
   categoryPublished: z.boolean().optional(),
 });
 
+export const serviceCreateSchema = z.object({
+  categoryId: z.string().cuid(),
+  name: z.string().trim().min(2).max(120),
+  description: z.string().trim().max(2000).optional().transform((v) => v || null),
+  available: z.boolean().optional(),
+  published: z.boolean().optional(),
+});
+
 export const staffSchema = z.object({
   name: z.string().trim().min(2).max(80),
   email: z.string().trim().toLowerCase().email(),

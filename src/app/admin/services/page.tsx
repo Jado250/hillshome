@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { getSession } from "@/lib/auth/session";
 import { can } from "@/lib/auth/rbac";
 import { ServiceToggle } from "@/components/admin/ServiceToggle";
+import { ServiceForm } from "@/components/admin/ServiceForm";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,7 @@ export default async function ServicesAdmin() {
   return (
     <div>
       <h1 className="text-3xl font-semibold">Services</h1>
+      <ServiceForm categories={categories.map((c) => ({ id: c.id, name: c.name }))} />
       {categories.map((c) => (
         <section key={c.id} className="mt-8">
           <h2 className="text-xl font-semibold">{c.name}</h2>

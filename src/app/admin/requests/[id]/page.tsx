@@ -4,6 +4,7 @@ import { getSession } from "@/lib/auth/session";
 import { can } from "@/lib/auth/rbac";
 import { RequestActions } from "@/components/admin/RequestActions";
 import { QuoteForm } from "@/components/admin/QuoteForm";
+import { RequestDeleteButton } from "@/components/admin/RequestDeleteButton";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +25,10 @@ export default async function RequestDetail({ params }: { params: Promise<{ id: 
   const Row = ({ k, v }: { k: string; v: React.ReactNode }) => v ? <div><dt className="text-xs text-ink/60">{k}</dt><dd>{v}</dd></div> : null;
   return (
     <div className="max-w-3xl space-y-8">
-      <h1 className="text-3xl font-semibold">{r.reference}</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-3xl font-semibold">{r.reference}</h1>
+        {can(session.role, "requests:manage") && <RequestDeleteButton id={r.id} reference={r.reference} />}
+      </div>
       <section className="grid gap-3 bg-white p-5 sm:grid-cols-2">
         <Row k="Customer" v={r.customerName} /><Row k="Phone" v={r.phone} /><Row k="Email" v={r.email} />
         <Row k="Category" v={r.category.name} /><Row k="Service" v={r.service?.name} /><Row k="Tour" v={r.tour?.name} />

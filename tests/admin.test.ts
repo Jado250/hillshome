@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { tourSchema, quoteSchema, staffSchema, settingsSchema, statusUpdateSchema } from "@/lib/validation/admin";
+import { tourSchema, quoteSchema, staffSchema, settingsSchema, statusUpdateSchema, serviceCreateSchema } from "@/lib/validation/admin";
 
 describe("tour schema", () => {
   const valid = {
@@ -47,6 +47,17 @@ describe("settings schema", () => {
   it("accepts known keys only", () => {
     expect(settingsSchema.safeParse({ "contact.email": "a@b.rw" }).success).toBe(true);
     expect(settingsSchema.safeParse({ "hacker.key": "x" }).success).toBe(false);
+  });
+});
+
+describe("service create schema", () => {
+  const valid = { categoryId: "clxxxxxxxxxxxxxxxxxxxxx1", name: "Apartment painting", description: "Interior painting" };
+  it("accepts a valid service", () => {
+    expect(serviceCreateSchema.safeParse(valid).success).toBe(true);
+  });
+  it("rejects a missing category and short names", () => {
+    expect(serviceCreateSchema.safeParse({ ...valid, categoryId: "nope" }).success).toBe(false);
+    expect(serviceCreateSchema.safeParse({ ...valid, name: "A" }).success).toBe(false);
   });
 });
 

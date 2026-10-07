@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { getSession } from "@/lib/auth/session";
 import { can } from "@/lib/auth/rbac";
+import { CustomerRowActions } from "@/components/admin/CustomerRowActions";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +26,7 @@ export default async function CustomersAdmin() {
       {rows.length === 0 ? <p className="mt-6">No customers yet.</p> : (
         <div className="mt-6 overflow-x-auto bg-white">
           <table className="w-full text-left text-sm">
-            <thead className="border-b"><tr>{["Name", "Email", "Phone", "Requests", "Last request"].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
+            <thead className="border-b"><tr>{["Name", "Email", "Phone", "Requests", "Last request", ""].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
             <tbody>
               {rows.map((r) => (
                 <tr key={r.email} className="border-b last:border-0">
@@ -34,6 +35,7 @@ export default async function CustomersAdmin() {
                   <td className="p-3">{r.phone}</td>
                   <td className="p-3">{r._count._all}</td>
                   <td className="p-3">{r._max.createdAt?.toLocaleDateString()}</td>
+                  <td className="p-3"><CustomerRowActions email={r.email} count={r._count._all} /></td>
                 </tr>
               ))}
             </tbody>

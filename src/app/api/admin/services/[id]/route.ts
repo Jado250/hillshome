@@ -21,3 +21,17 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
     return NextResponse.json(service);
   } catch (e) { return handleError(e); }
 }
+
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    assertSameOrigin(req);
+    await requirePermission("services:manage");
+    const { id } = await params;
+    // Keep past requests for records: detach them from the deleted service.
+    await db.$transaction([
+      db.serviceRequest.updateMany({ where: { serviceId: id }, data: { serviceId: null } }),
+      db.service.delete({ where: { id } }),
+    ]);
+    return NextResponse.json({ ok: true });
+  } catch (e) { return handleError(e); }
+}
