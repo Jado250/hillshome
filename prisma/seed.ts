@@ -130,7 +130,7 @@ async function main() {
     "company.name": "Hillshome Tours Company LTD",
     "contact.phone": "",
     "contact.email": "",
-    "contact.address": "",
+    "contact.address": "Inyarurembo, Kiyovu, Nyarugenge, Kigali, Rwanda",
     "contact.whatsapp": "",
     "contact.md.email": "siboisaie78@gmail.com",
     "contact.md.phone": "+250788423341",
