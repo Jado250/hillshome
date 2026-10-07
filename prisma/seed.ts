@@ -140,6 +140,7 @@ async function main() {
       { label: "Facebook", url: "https://www.facebook.com/share/1cNDUveQhx/" },
       { label: "YouTube", url: "https://youtube.com/@hillshometoursrwanda?si=Iq6F3TqSEeJUKVSk" },
       { label: "X", url: "https://x.com/JodaLavidkuez" },
+      { label: "Instagram", url: "https://www.instagram.com/hillshometoursrw?stkn=MWdxZWFvMzFianBm" },
     ],
     "about.intro": "",
     "about.mission": "",

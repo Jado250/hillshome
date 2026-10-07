@@ -7,6 +7,7 @@ const DEFAULT_SOCIAL_LINKS: SocialLink[] = [
   { label: "Facebook", url: "https://www.facebook.com/share/1cNDUveQhx/" },
   { label: "YouTube", url: "https://youtube.com/@hillshometoursrwanda?si=Iq6F3TqSEeJUKVSk" },
   { label: "X", url: "https://x.com/JodaLavidkuez" },
+  { label: "Instagram", url: "https://www.instagram.com/hillshometoursrw?stkn=MWdxZWFvMzFianBm" },
 ];
 
 function parseSocialLinks(value: unknown): SocialLink[] {
@@ -19,6 +20,7 @@ function parseSocialLinks(value: unknown): SocialLink[] {
           const host = u.hostname.replace(/^www\./, "");
           const label = host.includes("facebook") ? "Facebook"
             : host.includes("youtube") || host.includes("youtu.be") ? "YouTube"
+            : host.includes("instagram") ? "Instagram"
             : host.includes("x.com") || host.includes("twitter") ? "X"
             : host;
           return { label, url: v };
@@ -50,6 +52,13 @@ const ICONS: Record<string, React.ReactNode> = {
   X: (
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
       <path d="M17.7 3H21l-7.1 8.1L22.2 21h-6.6l-5.1-6.1L4.6 21H1.3l7.6-8.7L1.8 3h6.7l4.6 5.6L17.7 3Zm-1.2 16h1.8L7 4.9H5L16.5 19Z" />
+    </svg>
+  ),
+  Instagram: (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
     </svg>
   ),
 };
