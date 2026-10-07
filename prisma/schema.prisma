@@ -193,6 +193,7 @@ model GalleryItem {
   alt          String
   published    Boolean @default(true)
   isDemo       Boolean @default(false)
+  createdAt    DateTime @default(now())
 }
 
 model InternalNote {

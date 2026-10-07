@@ -13,7 +13,7 @@ export default async function Home() {
   const [categories, tours, gallery, services, settings] = await Promise.all([
     listCategories(),
     db.tour.findMany({ where: { published: true, archivedAt: null }, take: 3, orderBy: { name: "asc" } }),
-    db.galleryItem.findMany({ where: { published: true }, take: 6 }),
+    db.galleryItem.findMany({ where: { published: true }, take: 6, orderBy: { createdAt: "desc" } }),
     db.service.findMany({ where: { published: true, available: true }, include: { category: true }, take: 8, orderBy: { name: "asc" } }),
     db.siteSetting.findMany(),
   ]);

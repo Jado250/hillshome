@@ -12,7 +12,7 @@ export default async function GalleryAdmin() {
   if (!session) redirect("/admin/login");
   if (!can(session.role, "gallery:manage")) redirect("/admin");
   const [items, categories] = await Promise.all([
-    db.galleryItem.findMany({ orderBy: { id: "desc" } }),
+    db.galleryItem.findMany({ orderBy: { createdAt: "desc" } }),
     db.serviceCategory.findMany({ orderBy: { sortOrder: "asc" } }),
   ]);
   return (

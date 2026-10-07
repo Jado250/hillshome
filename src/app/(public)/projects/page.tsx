@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Projects" };
 
 export default async function Projects() {
-  const items = await db.galleryItem.findMany({ where: { published: true } });
+  const items = await db.galleryItem.findMany({ where: { published: true }, orderBy: { createdAt: "desc" } });
   return (
     <div className="container-x py-16">
       <h1 className="text-4xl font-semibold">Projects</h1>
