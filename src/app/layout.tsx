@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: { default: "Hillshome Tours Company LTD", template: "%s | Hillshome Tours Company LTD" },
   description: "Transport, construction, cleaning and maintenance, IT, multimedia and tours from one company.",
   openGraph: { type: "website", siteName: "Hillshome Tours Company LTD" },
+  icons: { icon: "/logo.jpeg", apple: "/logo.jpeg" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -72,7 +72,9 @@ export async function Footer() {
     <footer className="mt-24 bg-navy-950 text-sm text-white/80">
       <div className="container-x grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <p className="font-display text-xl text-white">{str(s["company.name"]) || "Hillshome Tours Company LTD"}</p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.jpeg" alt="Hillshome Tours Company Limited logo" className="h-16 w-16 rounded-full object-cover" />
+          <p className="mt-3 font-display text-xl text-white">{str(s["company.name"]) || "Hillshome Tours Company LTD"}</p>
           <p className="mt-3 max-w-sm">Transport, construction, cleaning and maintenance, IT, multimedia and tours.</p>
           <ul className="mt-5 flex items-center gap-4" aria-label="Social media">
             {social.map((l) => (
