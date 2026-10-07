@@ -23,6 +23,7 @@ export default async function SettingsAdmin() {
     vision: str(s["about.vision"]),
     values: arr(s["about.values"]).join("\n"),
     whyChoose: arr(s["home.whyChoose"]).join("\n"),
+    socialLinks: JSON.stringify(s["social.links"] ?? [], null, 2),
     testimonials: JSON.stringify(s["home.testimonials"] ?? [], null, 2),
     faq: JSON.stringify(s["home.faq"] ?? [], null, 2),
   };

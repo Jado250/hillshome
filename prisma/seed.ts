@@ -132,7 +132,11 @@ async function main() {
     "contact.email": "",
     "contact.address": "",
     "contact.whatsapp": "",
-    "social.links": [],
+    "social.links": [
+      { label: "Facebook", url: "https://www.facebook.com/share/1cNDUveQhx/" },
+      { label: "YouTube", url: "https://youtube.com/@hillshometoursrwanda?si=Iq6F3TqSEeJUKVSk" },
+      { label: "X", url: "https://x.com/JodaLavidkuez" },
+    ],
     "about.intro": "",
     "about.mission": "",
     "about.vision": "",
