@@ -4,8 +4,15 @@
  */
 const hits = new Map<string, { count: number; reset: number }>();
 
+// Prevent unbounded growth: drop expired buckets on each check.
+function sweep(now: number) {
+  if (hits.size < 1000) return;
+  for (const [k, v] of hits) if (v.reset < now) hits.delete(k);
+}
+
 export function rateLimit(key: string, limit: number, windowMs: number): boolean {
   const now = Date.now();
+  sweep(now);
   const entry = hits.get(key);
   if (!entry || entry.reset < now) {
     hits.set(key, { count: 1, reset: now + windowMs });

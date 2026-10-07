@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { db } from "@/lib/db";
 import { listCategories } from "@/server/services";
 
@@ -117,9 +118,12 @@ export default async function Home() {
         ) : (
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {gallery.map((i) => (
-              <figure key={i.id} className="group overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={i.url} alt={i.alt} loading="lazy" className="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-105" />
+              <figure key={i.id} className="group">
+                <span className="relative block aspect-[4/3] w-full overflow-hidden">
+                  <Image src={i.url} alt={i.alt} fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition duration-300 group-hover:scale-105" />
+                </span>
                 <figcaption className="mt-2 text-sm transition group-hover:text-gold-600">{i.title}</figcaption>
               </figure>
             ))}

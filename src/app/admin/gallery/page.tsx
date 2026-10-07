@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Image from "next/image";
 import { db } from "@/lib/db";
 import { getSession } from "@/lib/auth/session";
 import { can } from "@/lib/auth/rbac";
@@ -23,9 +24,12 @@ export default async function GalleryAdmin() {
       {items.length === 0 ? <p className="mt-3">No items yet.</p> : (
         <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((i) => (
-            <figure key={i.id} className="group overflow-hidden bg-white p-3 transition hover:shadow-md">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={i.url} alt={i.alt} className="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-105" />
+            <figure key={i.id} className="group bg-white p-3 transition hover:shadow-md">
+              <span className="relative block aspect-[4/3] w-full overflow-hidden">
+                <Image src={i.url} alt={i.alt} fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition duration-300 group-hover:scale-105" />
+              </span>
               <figcaption className="mt-2 text-sm">{i.title} · <span className="text-ink/60">{i.categorySlug}</span>{i.isDemo && <span className="ml-1 text-xs text-gold-600">DEMO</span>}</figcaption>
               <p className="text-xs text-ink/60">{i.published ? "Published" : "Hidden"}</p>
               <GalleryRowActions id={i.id} published={i.published} />

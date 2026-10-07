@@ -20,12 +20,18 @@ export async function POST(req: Request) {
     const parsed = loginSchema.safeParse(await req.json().catch(() => null));
     if (!parsed.success) return NextResponse.json({ error: "Enter your email and password." }, { status: 400 });
 
+    // Per-account throttle: survives IP rotation (x-forwarded-for is client-controlled).
+    if (!rateLimit(`login:email:${parsed.data.email}`, 10, 15 * 60_000)) {
+      return NextResponse.json({ error: "Too many attempts. Try again later." }, { status: 429 });
+    }
+
     const user = await db.user.findUnique({ where: { email: parsed.data.email } });
     const valid = user?.active
       ? await argon2.verify(user.passwordHash, parsed.data.password).catch(() => false)
       : await argon2.verify(await DUMMY_HASH, parsed.data.password).catch(() => false);
 
     if (!user || !user.active || !valid) {
+      await recordAudit(db, user?.id ?? null, "auth.login_failed", "User", user?.id ?? parsed.data.email);
       return NextResponse.json({ error: "Email or password is incorrect." }, { status: 401 });
     }
     await setSessionCookie({ id: user.id, role: user.role, name: user.name });
