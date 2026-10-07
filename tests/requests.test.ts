@@ -2,9 +2,10 @@ import { describe, it, expect } from "vitest";
 import { parseRequest } from "@/lib/validation/requests";
 import { formatReference } from "@/server/requests/reference";
 import { checkFile } from "@/lib/validation/upload";
+import { phoneDigits, whatsAppLink } from "@/server/notifications";
 import { can } from "@/lib/auth/rbac";
 
-const base = { customerName: "Aline Uwase", email: "aline@example.com", phone: "+250 788 000 000" };
+const base = { customerName: "Aline Uwase", email: "aline@example.com", phone: "+250 788 000 000", contactMethod: "WHATSAPP" };
 
 describe("reference numbers", () => {
   it("pads to six digits", () => {
@@ -29,8 +30,28 @@ describe("request validation", () => {
   });
   it("blocks credentials in IT requests", () => {
     const r = parseRequest("it-digital", { ...base, itService: "Technical support",
-      description: "My laptop is slow, password: abc123", urgency: "LOW", contactMethod: "EMAIL" });
+      description: "My laptop is slow, password: abc123", urgency: "LOW" });
     expect(r.ok).toBe(false);
+  });
+  it("requires a preferred contact method", () => {
+    const { contactMethod: _omitted, ...rest } = base;
+    const missing = parseRequest("transport", { ...rest, transportType: "Bus", pickupLocation: "A",
+      destination: "B", passengers: "4", tripType: "ONE_WAY" });
+    expect(missing.ok).toBe(false);
+    const bad = parseRequest("transport", { ...base, contactMethod: "PIGEON", transportType: "Bus",
+      pickupLocation: "A", destination: "B", passengers: "4", tripType: "ONE_WAY" });
+    expect(bad.ok).toBe(false);
+    if (!bad.ok) expect(bad.errors.contactMethod).toBeTruthy();
+  });
+});
+
+describe("contact helpers", () => {
+  it("strips phone numbers to digits", () => {
+    expect(phoneDigits("+250 788 000 000")).toBe("250788000000");
+  });
+  it("builds wa.me links with encoded text", () => {
+    const link = whatsAppLink("+250788000000", "Hello HS-REQ-000001");
+    expect(link).toBe("https://wa.me/250788000000?text=Hello%20HS-REQ-000001");
   });
 });
 

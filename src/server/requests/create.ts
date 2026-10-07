@@ -74,6 +74,7 @@ export async function createServiceRequest(
         customerName: common.customerName,
         email: common.email,
         phone: common.phone,
+        contactMethod: common.contactMethod,
         preferredDate: common.preferredDate ? new Date(common.preferredDate) : null,
         location: common.location,
         requirements: common.requirements,

@@ -14,6 +14,9 @@ export const commonSchema = z.object({
   customerName: text(120).min(2, "Enter your full name."),
   email: z.string().trim().toLowerCase().email("Enter a valid email address.").max(200),
   phone: text(30).regex(/^[+0-9\s()-]{7,30}$/, "Enter a valid phone number."),
+  contactMethod: z.enum(["CALL", "SMS", "WHATSAPP", "EMAIL"], {
+    errorMap: () => ({ message: "Choose how we should contact you." }),
+  }),
   preferredDate: optionalText(10).refine(
     (v) => !v || !Number.isNaN(Date.parse(v)), "Enter a valid date."),
   location: optionalText(200),
@@ -51,7 +54,6 @@ export const detailSchemas = {
     description: text(3000).min(10, "Describe the problem or project."),
     platform: optionalText(120),
     urgency: z.enum(["LOW", "NORMAL", "HIGH", "URGENT"]),
-    contactMethod: z.enum(["EMAIL", "PHONE", "WHATSAPP"]),
   }),
   multimedia: z.object({
     multimediaService: text(120).min(1, "Choose a service."),

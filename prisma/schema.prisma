@@ -37,6 +37,13 @@ enum RequestKind {
   QUOTATION
 }
 
+enum ContactMethod {
+  CALL
+  SMS
+  WHATSAPP
+  EMAIL
+}
+
 model User {
   id           String           @id @default(cuid())
   name         String
@@ -90,6 +97,8 @@ model ServiceRequest {
   customerName  String
   email         String
   phone         String
+  /// How the customer prefers to be contacted (call, SMS, WhatsApp or email)
+  contactMethod ContactMethod   @default(EMAIL)
   preferredDate DateTime?
   location      String?
   requirements  String?

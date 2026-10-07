@@ -28,6 +28,7 @@ export default async function CustomersAdmin() {
       : r.category.name))];
     return {
       email, name: latest.customerName, phone: latest.phone,
+      prefers: latest.contactMethod,
       count: reqs.length, last: latest.createdAt, services,
     };
   });
@@ -38,13 +39,14 @@ export default async function CustomersAdmin() {
       {rows.length === 0 ? <p className="mt-6">No customers yet.</p> : (
         <div className="mt-6 overflow-x-auto bg-white">
           <table className="w-full text-left text-sm">
-            <thead className="border-b"><tr>{["Name", "Email", "Phone", "Services requested", "Requests", "Last request", ""].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
+            <thead className="border-b"><tr>{["Name", "Email", "Phone", "Prefers", "Services requested", "Requests", "Last request", ""].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
             <tbody>
               {rows.map((r) => (
                 <tr key={r.email} className="border-b last:border-0">
                   <td className="p-3">{r.name}</td>
                   <td className="p-3">{r.email}</td>
                   <td className="p-3">{r.phone}</td>
+                  <td className="p-3">{r.prefers}</td>
                   <td className="p-3"><ul className="list-disc pl-4">{r.services.map((s) => <li key={s}>{s}</li>)}</ul></td>
                   <td className="p-3">{r.count}</td>
                   <td className="p-3">{r.last.toLocaleDateString()}</td>

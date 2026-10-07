@@ -5,6 +5,9 @@ import { can } from "@/lib/auth/rbac";
 import { RequestActions } from "@/components/admin/RequestActions";
 import { QuoteForm } from "@/components/admin/QuoteForm";
 import { RequestDeleteButton } from "@/components/admin/RequestDeleteButton";
+import { whatsAppLink } from "@/server/notifications";
+
+const METHOD_LABEL: Record<string, string> = { CALL: "Phone call", SMS: "SMS", WHATSAPP: "WhatsApp", EMAIL: "Email" };
 
 export const dynamic = "force-dynamic";
 
@@ -31,9 +34,16 @@ export default async function RequestDetail({ params }: { params: Promise<{ id: 
       </div>
       <section className="grid gap-3 bg-white p-5 sm:grid-cols-2">
         <Row k="Customer" v={r.customerName} /><Row k="Phone" v={r.phone} /><Row k="Email" v={r.email} />
+        <Row k="Prefers contact via" v={METHOD_LABEL[r.contactMethod] ?? r.contactMethod} />
         <Row k="Category" v={r.category.name} /><Row k="Service" v={r.service?.name} /><Row k="Tour" v={r.tour?.name} />
         <Row k="Preferred date" v={r.preferredDate?.toDateString()} /><Row k="Location" v={r.location} />
         <Row k="Requirements" v={r.requirements} />
+      </section>
+      <section className="flex flex-wrap gap-2">
+        <a href={`tel:${r.phone.replace(/\s/g, "")}`} className="btn-outline text-xs">Call customer</a>
+        <a href={whatsAppLink(r.phone, `Hello ${r.customerName}, this is Hillshome Tours regarding your request ${r.reference} (currently: ${r.status.replace("_", " ")}).`)}
+          target="_blank" rel="noopener noreferrer" className="btn-outline text-xs">WhatsApp customer</a>
+        <a href={`mailto:${r.email}?subject=${encodeURIComponent(`Your request ${r.reference}`)}`} className="btn-outline text-xs">Email customer</a>
       </section>
       <section className="bg-white p-5">
         <h2 className="font-semibold">Details</h2>

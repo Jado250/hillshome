@@ -13,6 +13,13 @@ export const commonFields: Field[] = [
   { name: "customerName", label: "Full name", type: "text", required: true },
   { name: "phone", label: "Phone", type: "tel", required: true },
   { name: "email", label: "Email", type: "email", required: true },
+  { name: "contactMethod", label: "How should we contact you?", type: "select", required: true,
+    options: [
+      { value: "CALL", label: "Phone call" },
+      { value: "WHATSAPP", label: "WhatsApp" },
+      { value: "SMS", label: "SMS" },
+      { value: "EMAIL", label: "Email" },
+    ] },
 ];
 
 const opts = (...v: string[]) => v.map((x) => ({ value: x, label: x }));
@@ -66,9 +73,6 @@ export const categoryFields: Record<CategorySlug, Field[]> = {
     { name: "urgency", label: "Urgency", type: "select", required: true,
       options: [{ value: "LOW", label: "Low" }, { value: "NORMAL", label: "Normal" },
         { value: "HIGH", label: "High" }, { value: "URGENT", label: "Urgent" }] },
-    { name: "contactMethod", label: "Preferred contact method", type: "select", required: true,
-      options: [{ value: "EMAIL", label: "Email" }, { value: "PHONE", label: "Phone" },
-        { value: "WHATSAPP", label: "WhatsApp" }] },
   ],
   multimedia: [
     { name: "multimediaService", label: "Multimedia service", type: "select", required: true,
