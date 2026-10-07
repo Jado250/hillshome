@@ -19,7 +19,7 @@ export default async function ToursAdmin() {
       </div>
       {tours.length === 0 ? <p className="mt-6">No tours yet.</p> : (
         <div className="mt-6 overflow-x-auto bg-white">
-          <table className="w-full text-left text-sm">
+          <table className="w-full min-w-[620px] text-left text-sm">
             <thead className="border-b"><tr>{["Name", "Destination", "Days", "Price", "Status", ""].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
             <tbody>
               {tours.map((t) => (

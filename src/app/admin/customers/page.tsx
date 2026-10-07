@@ -38,7 +38,7 @@ export default async function CustomersAdmin() {
       <h1 className="text-3xl font-semibold">Customers</h1>
       {rows.length === 0 ? <p className="mt-6">No customers yet.</p> : (
         <div className="mt-6 overflow-x-auto bg-white">
-          <table className="w-full text-left text-sm">
+          <table className="w-full min-w-[620px] text-left text-sm">
             <thead className="border-b"><tr>{["Name", "Email", "Phone", "Prefers", "Services requested", "Requests", "Last request", ""].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
             <tbody>
               {rows.map((r) => (

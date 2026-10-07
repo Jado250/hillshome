@@ -42,7 +42,7 @@ export default async function Contact() {
   const hasOfficers = str("contact.md.email") || str("contact.md.phone") || str("contact.it.email") || str("contact.it.phone");
   return (
     <div className="container-x max-w-2xl py-16">
-      <h1 className="text-4xl font-semibold">Contact us</h1>
+      <h1 className="text-3xl font-semibold sm:text-4xl">Contact us</h1>
       {general.length > 0 && (
         <dl className="mt-6 space-y-3">
           {general.map(([k, v]) => <div key={k}><dt className="text-sm font-medium">{k}</dt><dd>{v}</dd></div>)}

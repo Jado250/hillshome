@@ -26,7 +26,7 @@ export default async function RequestDetail({ params }: { params: Promise<{ id: 
   const staff = can(session.role, "requests:manage")
     ? await db.user.findMany({ where: { active: true }, select: { id: true, name: true } }) : [];
 
-  const Row = ({ k, v }: { k: string; v: React.ReactNode }) => v ? <div><dt className="text-xs text-ink/60">{k}</dt><dd>{v}</dd></div> : null;
+  const Row = ({ k, v }: { k: string; v: React.ReactNode }) => v ? <div><dt className="text-xs text-ink/70">{k}</dt><dd>{v}</dd></div> : null;
   return (
     <div className="max-w-3xl space-y-8">
       <BackButton fallback="/admin/requests" label="All requests" />
@@ -56,7 +56,7 @@ export default async function RequestDetail({ params }: { params: Promise<{ id: 
       {r.attachments.length > 0 && (
         <section className="bg-white p-5"><h2 className="font-semibold">Attachments</h2>
           <ul className="mt-2 text-sm">{r.attachments.map((a) => <li key={a.id}>{a.originalName} ({Math.round(a.sizeBytes / 1024)} KB)</li>)}</ul>
-          <p className="mt-2 text-xs text-ink/60">Download route is not built yet.</p></section>
+          <p className="mt-2 text-xs text-ink/70">Download route is not built yet.</p></section>
       )}
       <RequestActions id={r.id} status={r.status} assigneeId={r.assigneeId} staff={staff}
         canAssign={can(session.role, "requests:manage")} />

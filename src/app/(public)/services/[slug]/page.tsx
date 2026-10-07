@@ -19,7 +19,7 @@ export default async function ServiceDetail({ params }: P) {
     <>
       <section className="bg-navy-950 py-14 text-white">
         <div className="container-x">
-          <h1 className="text-4xl font-semibold !text-white">{c.name}</h1>
+          <h1 className="text-3xl font-semibold !text-white sm:text-4xl">{c.name}</h1>
           <p className="mt-3 max-w-2xl text-white/80">{c.description}</p>
         </div>
       </section>

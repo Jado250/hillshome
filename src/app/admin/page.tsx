@@ -44,7 +44,8 @@ export default async function AdminDashboard() {
       {recent.length === 0 ? (
         <p className="mt-3 text-ink/70">Nothing yet.</p>
       ) : (
-        <table className="mt-3 w-full bg-white text-left text-sm">
+        <div className="mt-3 overflow-x-auto bg-white">
+          <table className="w-full min-w-[620px] bg-white text-left text-sm">
           <thead className="border-b"><tr>{["Reference", "Customer", "Service", "Status", "Date"].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
           <tbody>
             {recent.map((r) => (
@@ -57,7 +58,8 @@ export default async function AdminDashboard() {
               </tr>
             ))}
           </tbody>
-        </table>
+          </table>
+        </div>
       )}
       <p className="mt-6 text-sm text-ink/70">Active staff accounts: {users}</p>
     </div>
@@ -67,7 +69,7 @@ export default async function AdminDashboard() {
 function Stat({ label, value, href }: { label: string; value: number; href: string }) {
   return (
     <Link href={href} className="bg-white p-5 transition hover:shadow-sm">
-      <p className="text-sm text-ink/60">{label}</p>
+      <p className="text-sm text-ink/70">{label}</p>
       <p className="mt-1 text-3xl font-semibold text-navy-900">{value}</p>
     </Link>
   );

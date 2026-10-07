@@ -12,7 +12,7 @@
 
 @layer components {
   .btn { @apply inline-flex items-center justify-center rounded px-5 py-2.5 text-sm font-semibold transition-colors; }
-  .btn-gold { @apply btn bg-gold-500 text-navy-950 hover:bg-gold-600; }
+  .btn-gold { @apply btn bg-gold-500 text-navy-950 hover:bg-[#a5822f]; }
   .btn-navy { @apply btn bg-navy-900 text-white hover:bg-navy-800; }
   .btn-outline { @apply btn border border-navy-900 text-navy-900 hover:bg-navy-100; }
   .input { @apply w-full rounded border border-navy-900/25 bg-white px-3 py-2 text-sm focus:border-navy-700; }

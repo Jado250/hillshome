@@ -32,7 +32,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </nav>
         <LogoutButton />
       </aside>
-      <div className="p-6">{children}</div>
+      <div className="p-4 sm:p-6">{children}</div>
     </div>
   );
 }

@@ -33,7 +33,7 @@ export default async function Requests({ searchParams }: { searchParams: Promise
       </form>
       {items.length === 0 ? <p className="mt-6">No service requests found.</p> : (
         <div className="mt-6 overflow-x-auto bg-white">
-          <table className="w-full text-left text-sm">
+          <table className="w-full min-w-[620px] text-left text-sm">
             <thead className="border-b"><tr>{["Reference","Customer","Service","Status","Assigned"].map((h) => <th key={h} className="p-3 font-medium">{h}</th>)}</tr></thead>
             <tbody>
               {items.map((r) => (

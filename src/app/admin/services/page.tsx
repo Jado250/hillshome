@@ -19,7 +19,8 @@ export default async function ServicesAdmin() {
       {categories.map((c) => (
         <section key={c.id} className="mt-8">
           <h2 className="text-xl font-semibold">{c.name}</h2>
-          <table className="mt-3 w-full bg-white text-left text-sm">
+          <div className="mt-3 overflow-x-auto bg-white">
+          <table className="w-full min-w-[620px] bg-white text-left text-sm">
             <thead className="border-b"><tr>{["Service", "Published", "Available", ""].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
             <tbody>
               {c.services.map((s) => (
@@ -32,6 +33,7 @@ export default async function ServicesAdmin() {
               ))}
             </tbody>
           </table>
+          </div>
         </section>
       ))}
     </div>

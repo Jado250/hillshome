@@ -24,7 +24,7 @@ export default async function TourDetail({ params }: P) {
   return (
     <div className="container-x max-w-3xl py-16">
       <BackButton fallback="/tours" label="All tours" />
-      <h1 className="mt-6 text-4xl font-semibold">{t.name}</h1>
+      <h1 className="mt-6 text-3xl font-semibold sm:text-4xl">{t.name}</h1>
       <p className="mt-2 text-ink/70">{t.destination} · {t.durationDays} day{t.durationDays > 1 ? "s" : ""}</p>
       <p className="mt-2 text-lg font-semibold">{t.price ? `${t.currency} ${t.price}` : "Price on request"}</p>
       <p className="mt-6 whitespace-pre-line">{t.description}</p>

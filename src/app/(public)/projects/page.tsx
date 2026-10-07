@@ -9,7 +9,7 @@ export default async function Projects() {
   const items = await db.galleryItem.findMany({ where: { published: true }, orderBy: { createdAt: "desc" } });
   return (
     <div className="container-x py-16">
-      <h1 className="text-4xl font-semibold">Projects</h1>
+      <h1 className="text-3xl font-semibold sm:text-4xl">Projects</h1>
       {items.length === 0 ? <p className="mt-6">No projects have been added yet.</p> : (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((i) => (

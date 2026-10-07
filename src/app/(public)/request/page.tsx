@@ -23,7 +23,7 @@ export default async function RequestPage({ searchParams }: { searchParams: Prom
 
   return (
     <div className="container-x max-w-3xl py-16">
-      <h1 className="text-4xl font-semibold">Request a service</h1>
+      <h1 className="text-3xl font-semibold sm:text-4xl">Request a service</h1>
       <nav aria-label="Service category" className="mt-6 flex flex-wrap gap-2">
         {categories.map((c) => (
           <Link key={c.id} href={`/request?category=${c.slug}`} aria-current={selected?.slug === c.slug}

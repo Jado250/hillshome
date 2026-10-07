@@ -30,8 +30,8 @@ export default async function GalleryAdmin() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition duration-300 group-hover:scale-105" />
               </span>
-              <figcaption className="mt-2 text-sm">{i.title} · <span className="text-ink/60">{i.categorySlug}</span>{i.isDemo && <span className="ml-1 text-xs text-gold-600">DEMO</span>}</figcaption>
-              <p className="text-xs text-ink/60">{i.published ? "Published" : "Hidden"}</p>
+              <figcaption className="mt-2 text-sm">{i.title} · <span className="text-ink/70">{i.categorySlug}</span>{i.isDemo && <span className="ml-1 text-xs text-gold-600">DEMO</span>}</figcaption>
+              <p className="text-xs text-ink/70">{i.published ? "Published" : "Hidden"}</p>
               <GalleryRowActions id={i.id} published={i.published} />
             </figure>
           ))}

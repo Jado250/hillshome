@@ -15,7 +15,7 @@ export default async function QuotesAdmin() {
       <h1 className="text-3xl font-semibold">Quotes</h1>
       {quotes.length === 0 ? <p className="mt-6">No quotes yet. Create one from a request.</p> : (
         <div className="mt-6 overflow-x-auto bg-white">
-          <table className="w-full text-left text-sm">
+          <table className="w-full min-w-[620px] text-left text-sm">
             <thead className="border-b"><tr>{["Reference", "Customer", "Amount", "Status", "Valid until", "Created"].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
             <tbody>
               {quotes.map((q) => (

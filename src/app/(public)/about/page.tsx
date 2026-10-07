@@ -14,7 +14,7 @@ export default async function About() {
   const empty = blocks.every(([, v]) => !v) && !values.length;
   return (
     <div className="container-x max-w-3xl py-16">
-      <h1 className="text-4xl font-semibold">About Hillshome Tours Company LTD</h1>
+      <h1 className="text-3xl font-semibold sm:text-4xl">About Hillshome Tours Company LTD</h1>
       <p className="mt-4 text-lg">Hillshome offers transport, construction, cleaning and maintenance, IT, multimedia and tourism services.</p>
       {empty && <p className="mt-8 rounded bg-gold-100 p-4 text-sm">Company profile content has not been added yet. It can be edited in the admin settings.</p>}
       {blocks.map(([title, text]) => text ? (

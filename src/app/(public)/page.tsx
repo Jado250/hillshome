@@ -35,7 +35,7 @@ export default async function Home() {
       <section className="bg-navy-950 py-20 text-white">
         <div className="container-x">
           <p className="text-sm uppercase tracking-widest text-gold-500">{companyName}</p>
-          <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold text-white sm:text-5xl">
+          <h1 className="mt-3 max-w-3xl font-display text-3xl font-semibold text-white sm:text-5xl">
             Transport • Construction • IT • Multimedia • Cleaning • Tourism
           </h1>
           <p className="mt-4 max-w-2xl text-white/80">
@@ -50,7 +50,7 @@ export default async function Home() {
 
       {/* 2. Company introduction */}
       <section className="container-x py-14">
-        <h2 className="text-3xl font-semibold">Who we are</h2>
+        <h2 className="text-2xl font-semibold sm:text-3xl">Who we are</h2>
         <p className="mt-3 max-w-3xl text-ink/80">{intro}</p>
         <Link href="/about" className="mt-4 inline-block underline">Learn more about us</Link>
       </section>
@@ -58,7 +58,7 @@ export default async function Home() {
       {/* 3. Service categories */}
       <section className="bg-white py-14">
         <div className="container-x">
-          <h2 className="text-3xl font-semibold">Our services</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl">Our services</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {categories.map((c) => (
               <Link key={c.id} href={`/services/${c.slug}`} className="border border-navy-900/10 p-6 transition hover:border-gold-600">
@@ -73,7 +73,7 @@ export default async function Home() {
 
       {/* 4. Featured services */}
       <section className="container-x py-14">
-        <h2 className="text-3xl font-semibold">Featured services</h2>
+        <h2 className="text-2xl font-semibold sm:text-3xl">Featured services</h2>
         {services.length === 0 ? (
           <p className="mt-4 text-ink/70">Services will appear here once published.</p>
         ) : (
@@ -81,7 +81,7 @@ export default async function Home() {
             {services.map((sv) => (
               <li key={sv.id} className="border border-navy-900/10 bg-white p-4">
                 <Link href={`/services/${sv.category.slug}`} className="font-medium hover:underline">{sv.name}</Link>
-                <p className="mt-1 text-xs text-ink/60">{sv.category.name}</p>
+                <p className="mt-1 text-xs text-ink/70">{sv.category.name}</p>
               </li>
             ))}
           </ul>
@@ -91,7 +91,7 @@ export default async function Home() {
       {/* 5. Featured tours */}
       <section className="bg-paper py-14">
         <div className="container-x">
-          <h2 className="text-3xl font-semibold">Featured tours</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl">Featured tours</h2>
           {tours.length === 0 ? (
             <p className="mt-4 text-ink/70">No tours available yet.</p>
           ) : (
@@ -112,7 +112,7 @@ export default async function Home() {
 
       {/* 6. Projects / gallery */}
       <section className="container-x py-14">
-        <h2 className="text-3xl font-semibold">Projects & gallery</h2>
+        <h2 className="text-2xl font-semibold sm:text-3xl">Projects & gallery</h2>
         {gallery.length === 0 ? (
           <p className="mt-4 text-ink/70">Project photos will appear here once added.</p>
         ) : (
@@ -135,7 +135,7 @@ export default async function Home() {
       {whyChoose.length > 0 && (
         <section className="bg-white py-14">
           <div className="container-x">
-            <h2 className="text-3xl font-semibold">Why choose Hillshome</h2>
+            <h2 className="text-2xl font-semibold sm:text-3xl">Why choose Hillshome</h2>
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
               {whyChoose.map((w) => <li key={w} className="border-l-4 border-gold-500 pl-4">{w}</li>)}
             </ul>
@@ -146,7 +146,7 @@ export default async function Home() {
       {/* 8. Testimonials */}
       {testimonials.length > 0 && (
         <section className="container-x py-14">
-          <h2 className="text-3xl font-semibold">What customers say</h2>
+          <h2 className="text-2xl font-semibold sm:text-3xl">What customers say</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((t, i) => (
               <blockquote key={i} className="border border-navy-900/10 bg-white p-6">
@@ -162,7 +162,7 @@ export default async function Home() {
       {faq.length > 0 && (
         <section className="bg-paper py-14">
           <div className="container-x max-w-3xl">
-            <h2 className="text-3xl font-semibold">Frequently asked questions</h2>
+            <h2 className="text-2xl font-semibold sm:text-3xl">Frequently asked questions</h2>
             <div className="mt-8 space-y-3">
               {faq.map((f, i) => (
                 <details key={i} className="border border-navy-900/10 bg-white p-4">
@@ -177,7 +177,7 @@ export default async function Home() {
 
       {/* 10. Contact strip */}
       <section className="container-x py-14">
-        <h2 className="text-3xl font-semibold">Contact us</h2>
+        <h2 className="text-2xl font-semibold sm:text-3xl">Contact us</h2>
         {contact.length > 0 ? (
           <dl className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {contact.map(([k, v]) => (

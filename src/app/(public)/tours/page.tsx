@@ -10,10 +10,10 @@ export default async function Tours({ searchParams }: { searchParams: Promise<{ 
   const tours = await listTours(q);
   return (
     <div className="container-x py-16">
-      <h1 className="text-4xl font-semibold">Tours</h1>
+      <h1 className="text-3xl font-semibold sm:text-4xl">Tours</h1>
       <form className="mt-6 flex max-w-md gap-2" role="search">
         <label htmlFor="q" className="sr-only">Search tours</label>
-        <input id="q" name="q" defaultValue={q} placeholder="Search by name or destination" className="input" />
+        <input id="q" name="q" defaultValue={q} placeholder="Search by name or destination" className="input min-w-0" />
         <button className="btn-navy">Search</button>
       </form>
       {tours.length === 0 ? (
