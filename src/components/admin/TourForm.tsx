@@ -33,7 +33,7 @@ export function TourForm({ action, method, initial }: { action: string; method: 
   }
 
   return (
-    <form onSubmit={onSubmit} className="mt-6 max-w-2xl space-y-4 bg-white p-6">
+    <form onSubmit={onSubmit} className="mt-6 max-w-2xl space-y-4 bg-white p-6 dark:bg-navy-900">
       <div><label className="label" htmlFor="name">Name</label><input id="name" name="name" required defaultValue={initial.name} className="input" /></div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div><label className="label" htmlFor="destination">Destination</label><input id="destination" name="destination" required defaultValue={initial.destination} className="input" /></div>

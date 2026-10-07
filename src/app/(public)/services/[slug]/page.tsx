@@ -33,7 +33,7 @@ export default async function ServiceDetail({ params }: P) {
             <h2 className="text-2xl font-semibold">What is included</h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
               {c.services.filter((s) => s.available).map((s) => (
-                <li key={s.id} className="border-l-4 border-gold-500 bg-white p-4">{s.name}</li>
+                <li key={s.id} className="border-l-4 border-gold-500 bg-white p-4 dark:bg-navy-900">{s.name}</li>
               ))}
             </ul>
             <Link href={`/request?category=${c.slug}`} className="btn-gold mt-8">Request this service</Link>

@@ -22,7 +22,7 @@ export function RequestDeleteButton({ id, reference }: { id: string; reference: 
       <button onClick={remove} disabled={busy} className="btn-outline text-xs disabled:opacity-60">
         {busy ? "Deleting…" : "Delete request"}
       </button>
-      {msg && <span className="text-xs text-red-700">{msg}</span>}
+      {msg && <span className="text-xs text-red-700 dark:text-red-400">{msg}</span>}
     </span>
   );
 }

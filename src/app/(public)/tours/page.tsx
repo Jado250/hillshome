@@ -21,9 +21,9 @@ export default async function Tours({ searchParams }: { searchParams: Promise<{ 
       ) : (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {tours.map((t) => (
-            <article key={t.id} className="bg-white p-6">
+            <article key={t.id} className="bg-white p-6 dark:bg-navy-900">
               <h2 className="text-xl font-semibold">{t.name}</h2>
-              <p className="mt-1 text-sm text-ink/70">{t.destination} · {t.durationDays} day{t.durationDays > 1 ? "s" : ""}</p>
+              <p className="mt-1 text-sm text-ink/70 dark:text-white/70">{t.destination} · {t.durationDays} day{t.durationDays > 1 ? "s" : ""}</p>
               <p className="mt-3 text-sm">{t.shortDescription}</p>
               <p className="mt-3 font-semibold">{t.price ? `${t.currency} ${t.price}` : "Price on request"}</p>
               <Link href={`/tours/${t.slug}`} className="btn-outline mt-4">View tour</Link>

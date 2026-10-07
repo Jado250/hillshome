@@ -50,19 +50,19 @@ export default async function Home() {
       {/* 2. Company introduction */}
       <section className="container-x py-14">
         <h2 className="text-3xl font-semibold">Who we are</h2>
-        <p className="mt-3 max-w-3xl text-ink/80">{intro}</p>
+        <p className="mt-3 max-w-3xl text-ink/80 dark:text-white/80">{intro}</p>
         <Link href="/about" className="mt-4 inline-block underline">Learn more about us</Link>
       </section>
 
       {/* 3. Service categories */}
-      <section className="bg-white py-14">
+      <section className="bg-white py-14 dark:bg-navy-900">
         <div className="container-x">
           <h2 className="text-3xl font-semibold">Our services</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {categories.map((c) => (
-              <Link key={c.id} href={`/services/${c.slug}`} className="border border-navy-900/10 p-6 transition hover:border-gold-600">
+              <Link key={c.id} href={`/services/${c.slug}`} className="border border-navy-900/10 p-6 transition hover:border-gold-600 dark:border-white/10">
                 <h3 className="text-xl font-semibold">{c.name}</h3>
-                <p className="mt-2 text-sm text-ink/70">{c.shortDescription}</p>
+                <p className="mt-2 text-sm text-ink/70 dark:text-white/70">{c.shortDescription}</p>
                 <span className="mt-4 inline-block text-sm font-medium text-gold-600">View details →</span>
               </Link>
             ))}
@@ -74,13 +74,13 @@ export default async function Home() {
       <section className="container-x py-14">
         <h2 className="text-3xl font-semibold">Featured services</h2>
         {services.length === 0 ? (
-          <p className="mt-4 text-ink/70">Services will appear here once published.</p>
+          <p className="mt-4 text-ink/70 dark:text-white/70">Services will appear here once published.</p>
         ) : (
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((sv) => (
-              <li key={sv.id} className="border border-navy-900/10 bg-white p-4">
+              <li key={sv.id} className="border border-navy-900/10 bg-white p-4 dark:border-white/10 dark:bg-navy-900">
                 <Link href={`/services/${sv.category.slug}`} className="font-medium hover:underline">{sv.name}</Link>
-                <p className="mt-1 text-xs text-ink/60">{sv.category.name}</p>
+                <p className="mt-1 text-xs text-ink/60 dark:text-white/60">{sv.category.name}</p>
               </li>
             ))}
           </ul>
@@ -88,17 +88,17 @@ export default async function Home() {
       </section>
 
       {/* 5. Featured tours */}
-      <section className="bg-paper py-14">
+      <section className="bg-paper py-14 dark:bg-navy-900">
         <div className="container-x">
           <h2 className="text-3xl font-semibold">Featured tours</h2>
           {tours.length === 0 ? (
-            <p className="mt-4 text-ink/70">No tours available yet.</p>
+            <p className="mt-4 text-ink/70 dark:text-white/70">No tours available yet.</p>
           ) : (
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {tours.map((t) => (
-                <article key={t.id} className="bg-white p-6">
+                <article key={t.id} className="bg-white p-6 dark:bg-navy-950">
                   <h3 className="text-xl font-semibold">{t.name}</h3>
-                  <p className="mt-1 text-sm text-ink/70">{t.destination} · {t.durationDays} day{t.durationDays > 1 ? "s" : ""}</p>
+                  <p className="mt-1 text-sm text-ink/70 dark:text-white/70">{t.destination} · {t.durationDays} day{t.durationDays > 1 ? "s" : ""}</p>
                   <p className="mt-3 text-sm">{t.shortDescription}</p>
                   <p className="mt-3 font-semibold">{t.price ? `${t.currency} ${t.price}` : "Price on request"}</p>
                   <Link href={`/tours/${t.slug}`} className="btn-outline mt-4">View tour</Link>
@@ -113,7 +113,7 @@ export default async function Home() {
       <section className="container-x py-14">
         <h2 className="text-3xl font-semibold">Projects & gallery</h2>
         {gallery.length === 0 ? (
-          <p className="mt-4 text-ink/70">Project photos will appear here once added.</p>
+          <p className="mt-4 text-ink/70 dark:text-white/70">Project photos will appear here once added.</p>
         ) : (
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {gallery.map((i) => (
@@ -129,7 +129,7 @@ export default async function Home() {
 
       {/* 7. Why choose Hillshome */}
       {whyChoose.length > 0 && (
-        <section className="bg-white py-14">
+        <section className="bg-white py-14 dark:bg-navy-900">
           <div className="container-x">
             <h2 className="text-3xl font-semibold">Why choose Hillshome</h2>
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -145,9 +145,9 @@ export default async function Home() {
           <h2 className="text-3xl font-semibold">What customers say</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((t, i) => (
-              <blockquote key={i} className="border border-navy-900/10 bg-white p-6">
+              <blockquote key={i} className="border border-navy-900/10 bg-white p-6 dark:border-white/10 dark:bg-navy-900">
                 <p>“{t.quote}”</p>
-                <footer className="mt-3 text-sm font-medium text-navy-900">{t.name}{t.role ? ` · ${t.role}` : ""}</footer>
+                <footer className="mt-3 text-sm font-medium text-navy-900 dark:text-white">{t.name}{t.role ? ` · ${t.role}` : ""}</footer>
               </blockquote>
             ))}
           </div>
@@ -156,14 +156,14 @@ export default async function Home() {
 
       {/* 9. FAQ */}
       {faq.length > 0 && (
-        <section className="bg-paper py-14">
+        <section className="bg-paper py-14 dark:bg-navy-900">
           <div className="container-x max-w-3xl">
             <h2 className="text-3xl font-semibold">Frequently asked questions</h2>
             <div className="mt-8 space-y-3">
               {faq.map((f, i) => (
-                <details key={i} className="border border-navy-900/10 bg-white p-4">
+                <details key={i} className="border border-navy-900/10 bg-white p-4 dark:border-white/10 dark:bg-navy-950">
                   <summary className="cursor-pointer font-medium">{f.q}</summary>
-                  <p className="mt-2 text-sm text-ink/80">{f.a}</p>
+                  <p className="mt-2 text-sm text-ink/80 dark:text-white/80">{f.a}</p>
                 </details>
               ))}
             </div>
@@ -181,7 +181,7 @@ export default async function Home() {
             ))}
           </dl>
         ) : (
-          <p className="mt-4 text-ink/70">Contact details can be added in the admin settings.</p>
+          <p className="mt-4 text-ink/70 dark:text-white/70">Contact details can be added in the admin settings.</p>
         )}
         <Link href="/contact" className="btn-navy mt-6">Get in touch</Link>
       </section>

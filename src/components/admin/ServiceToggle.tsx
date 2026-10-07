@@ -30,7 +30,7 @@ export function ServiceToggle({ id, published, available }: { id: string; publis
       <button onClick={() => toggle("published")} className="btn-outline text-xs">{published ? "Unpublish" : "Publish"}</button>
       <button onClick={() => toggle("available")} className="btn-outline text-xs">{available ? "Mark unavailable" : "Mark available"}</button>
       <button onClick={remove} className="btn-outline text-xs">Delete</button>
-      {msg && <span className="text-xs text-red-700">{msg}</span>}
+      {msg && <span className="text-xs text-red-700 dark:text-red-400">{msg}</span>}
     </span>
   );
 }

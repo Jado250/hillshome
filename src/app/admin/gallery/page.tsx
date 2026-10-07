@@ -23,11 +23,11 @@ export default async function GalleryAdmin() {
       {items.length === 0 ? <p className="mt-3">No items yet.</p> : (
         <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((i) => (
-            <figure key={i.id} className="group overflow-hidden bg-white p-3 transition hover:shadow-md">
+            <figure key={i.id} className="group overflow-hidden bg-white dark:bg-navy-900 p-3 transition hover:shadow-md">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={i.url} alt={i.alt} className="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-105" />
-              <figcaption className="mt-2 text-sm">{i.title} · <span className="text-ink/60">{i.categorySlug}</span>{i.isDemo && <span className="ml-1 text-xs text-gold-600">DEMO</span>}</figcaption>
-              <p className="text-xs text-ink/60">{i.published ? "Published" : "Hidden"}</p>
+              <figcaption className="mt-2 text-sm">{i.title} · <span className="text-ink/60 dark:text-white/60">{i.categorySlug}</span>{i.isDemo && <span className="ml-1 text-xs text-gold-600">DEMO</span>}</figcaption>
+              <p className="text-xs text-ink/60 dark:text-white/60">{i.published ? "Published" : "Hidden"}</p>
               <GalleryRowActions id={i.id} published={i.published} />
             </figure>
           ))}

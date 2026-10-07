@@ -19,11 +19,11 @@ export default async function ServicesAdmin() {
       {categories.map((c) => (
         <section key={c.id} className="mt-8">
           <h2 className="text-xl font-semibold">{c.name}</h2>
-          <table className="mt-3 w-full bg-white text-left text-sm">
-            <thead className="border-b"><tr>{["Service", "Published", "Available", ""].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
+          <table className="mt-3 w-full bg-white dark:bg-navy-900 text-left text-sm">
+            <thead className="border-b dark:border-white/10"><tr>{["Service", "Published", "Available", ""].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
             <tbody>
               {c.services.map((s) => (
-                <tr key={s.id} className="border-b last:border-0">
+                <tr key={s.id} className="border-b last:border-0 dark:border-white/10">
                   <td className="p-3">{s.name}</td>
                   <td className="p-3">{s.published ? "Yes" : "No"}</td>
                   <td className="p-3">{s.available ? "Yes" : "No"}</td>
