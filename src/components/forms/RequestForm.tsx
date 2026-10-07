@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { categoryFields, commonFields, allowsFiles, type Field } from "@/lib/forms/config";
 import type { CategorySlug } from "@/lib/validation/requests";
 
-type Props = { category: CategorySlug; tourSlug?: string; serviceSlug?: string };
+type Props = { category: CategorySlug; tourSlug?: string; serviceSlug?: string; tours?: { slug: string; name: string }[] };
 
-export function RequestForm({ category, tourSlug, serviceSlug }: Props) {
+export function RequestForm({ category, tourSlug, serviceSlug, tours = [] }: Props) {
   const router = useRouter();
   const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [formError, setFormError] = useState("");
@@ -18,6 +18,7 @@ export function RequestForm({ category, tourSlug, serviceSlug }: Props) {
     setBusy(true); setErrors({}); setFormError("");
     const fd = new FormData(e.currentTarget);
     const data: Record<string, unknown> = { tourSlug, serviceSlug };
+    if (category === "tours" && !tourSlug) data.tourSlug = String(fd.get("tourSlug") ?? "") || undefined;
     for (const f of [...commonFields, ...categoryFields[category]]) data[f.name] = fd.get(f.name) ?? "";
 
     const body = new FormData();
@@ -60,6 +61,19 @@ export function RequestForm({ category, tourSlug, serviceSlug }: Props) {
     <form onSubmit={onSubmit} className="space-y-6" noValidate>
       <div className="grid gap-4 sm:grid-cols-2">
         {commonFields.map(render)}
+        {category === "tours" && !tourSlug && (
+          tours.length > 0 ? (
+            <div>
+              <label htmlFor="tourSlug" className="label">Select a tour *</label>
+              <select id="tourSlug" name="tourSlug" required defaultValue="" className="input"
+                aria-invalid={!!errors.tourSlug} aria-describedby={errors.tourSlug ? "tourSlug-err" : undefined}>
+                <option value="" disabled>Choose…</option>
+                {tours.map((t) => <option key={t.slug} value={t.slug}>{t.name}</option>)}
+              </select>
+              {errors.tourSlug && <p id="tourSlug-err" role="alert" className="mt-1 text-xs text-red-700">{errors.tourSlug[0]}</p>}
+            </div>
+          ) : <p className="text-sm text-ink/70">No tours are currently available for booking. Please check again later.</p>
+        )}
         {categoryFields[category].map(render)}
         {allowsFiles.includes(category) && (
           <div className="sm:col-span-2">

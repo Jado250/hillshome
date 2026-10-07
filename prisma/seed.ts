@@ -67,7 +67,12 @@ const categories = [
   { slug: "tours", name: "Tours & Tourism", kind: RequestKind.BOOKING, sortOrder: 6,
     shortDescription: "Guided tours and travel requests.",
     description: "Browse available tours and send a booking request.",
-    services: [] },
+    services: [
+      { slug: "city-tours", name: "City Tours", description: "Guided tours around the city and its highlights." },
+      { slug: "cultural-heritage-tours", name: "Cultural & Heritage Tours", description: "Culture, history and heritage experiences." },
+      { slug: "nature-wildlife-tours", name: "Nature & Wildlife Tours", description: "Nature outings and wildlife experiences." },
+      { slug: "custom-group-tours", name: "Custom & Group Tours", description: "Tailor-made tours for groups and organisations." },
+    ] },
 ] as const;
 
 async function main() {
@@ -77,11 +82,11 @@ async function main() {
       where: { slug: c.slug }, update: data, create: data,
     });
     for (const s of services) {
-      const sv = s as { slug: string; name: string; available?: boolean; published?: boolean };
+      const sv = s as { slug: string; name: string; description?: string; available?: boolean; published?: boolean };
       await prisma.service.upsert({
         where: { slug: sv.slug },
         update: {},
-        create: { slug: sv.slug, name: sv.name, categoryId: cat.id,
+        create: { slug: sv.slug, name: sv.name, description: sv.description ?? null, categoryId: cat.id,
           available: sv.available ?? true, published: sv.published ?? true },
       });
     }
