@@ -34,7 +34,7 @@ export default async function Home() {
       <section className="bg-navy-950 py-20 text-white">
         <div className="container-x">
           <p className="text-sm uppercase tracking-widest text-gold-500">{companyName}</p>
-          <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold sm:text-5xl">
+          <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold text-white sm:text-5xl">
             Transport • Construction • IT • Multimedia • Cleaning • Tourism
           </h1>
           <p className="mt-4 max-w-2xl text-white/80">
