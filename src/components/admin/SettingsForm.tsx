@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 type Initial = {
   companyName: string; phone: string; email: string; address: string; whatsapp: string;
+  mdEmail: string; mdPhone: string; itEmail: string; itPhone: string;
   socialLinks: string;
   aboutIntro: string; mission: string; vision: string; values: string; whyChoose: string;
   testimonials: string; faq: string;
@@ -36,6 +37,10 @@ export function SettingsForm({ initial }: { initial: Initial }) {
       "contact.email": String(fd.get("email") ?? ""),
       "contact.address": String(fd.get("address") ?? ""),
       "contact.whatsapp": String(fd.get("whatsapp") ?? ""),
+      "contact.md.email": String(fd.get("mdEmail") ?? ""),
+      "contact.md.phone": String(fd.get("mdPhone") ?? ""),
+      "contact.it.email": String(fd.get("itEmail") ?? ""),
+      "contact.it.phone": String(fd.get("itPhone") ?? ""),
       "social.links": socialLinks,
       "about.intro": String(fd.get("aboutIntro") ?? ""),
       "about.mission": String(fd.get("mission") ?? ""),
@@ -62,6 +67,12 @@ export function SettingsForm({ initial }: { initial: Initial }) {
         <div><label className="label" htmlFor="whatsapp">WhatsApp</label><input id="whatsapp" name="whatsapp" defaultValue={initial.whatsapp} className="input" /></div>
       </div>
       <div><label className="label" htmlFor="address">Address</label><input id="address" name="address" defaultValue={initial.address} className="input" /></div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div><label className="label" htmlFor="mdEmail">Managing Director — email</label><input id="mdEmail" name="mdEmail" type="email" defaultValue={initial.mdEmail} className="input" /></div>
+        <div><label className="label" htmlFor="mdPhone">Managing Director — phone (call & WhatsApp)</label><input id="mdPhone" name="mdPhone" defaultValue={initial.mdPhone} className="input" /></div>
+        <div><label className="label" htmlFor="itEmail">IT Officer — email</label><input id="itEmail" name="itEmail" type="email" defaultValue={initial.itEmail} className="input" /></div>
+        <div><label className="label" htmlFor="itPhone">IT Officer — phone (call & WhatsApp)</label><input id="itPhone" name="itPhone" defaultValue={initial.itPhone} className="input" /></div>
+      </div>
       <div><label className="label" htmlFor="socialLinks">Social links (JSON array: [{'{"label","url"}]'})</label><textarea id="socialLinks" name="socialLinks" rows={3} defaultValue={initial.socialLinks} className="input font-mono text-xs" /></div>
       <div><label className="label" htmlFor="aboutIntro">About intro</label><textarea id="aboutIntro" name="aboutIntro" rows={3} defaultValue={initial.aboutIntro} className="input" /></div>
       <div><label className="label" htmlFor="mission">Mission</label><textarea id="mission" name="mission" rows={2} defaultValue={initial.mission} className="input" /></div>

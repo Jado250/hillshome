@@ -56,6 +56,7 @@ export const staffSchema = z.object({
 
 export const SETTINGS_KEYS = [
   "company.name", "contact.phone", "contact.email", "contact.address", "contact.whatsapp",
+  "contact.md.email", "contact.md.phone", "contact.it.email", "contact.it.phone",
   "social.links", "about.intro", "about.mission", "about.vision", "about.values",
   "home.whyChoose", "home.testimonials", "home.faq",
 ] as const;
@@ -67,6 +68,10 @@ export const settingsSchema = z.object({
   "contact.email": settingValue.optional(),
   "contact.address": settingValue.optional(),
   "contact.whatsapp": settingValue.optional(),
+  "contact.md.email": settingValue.optional(),
+  "contact.md.phone": settingValue.optional(),
+  "contact.it.email": settingValue.optional(),
+  "contact.it.phone": settingValue.optional(),
   "social.links": settingValue.optional(),
   "about.intro": settingValue.optional(),
   "about.mission": settingValue.optional(),
