@@ -10,7 +10,7 @@ const waLink = (phone: string) => `https://wa.me/${phone.replace(/[^0-9]/g, "")}
 function PersonCard({ title, email, phone }: { title: string; email: string; phone: string }) {
   if (!email && !phone) return null;
   return (
-    <section className="mt-8 border border-navy-900/10 bg-white p-6 dark:border-white/10 dark:bg-navy-900">
+    <section className="mt-8 border border-navy-900/10 bg-white p-6">
       <h2 className="text-xl font-semibold">{title}</h2>
       <dl className="mt-3 space-y-2 text-sm">
         {email && (
@@ -51,7 +51,7 @@ export default async function Contact() {
       <PersonCard title="Managing Director" email={str("contact.md.email")} phone={str("contact.md.phone")} />
       <PersonCard title="IT Officer" email={str("contact.it.email")} phone={str("contact.it.phone")} />
       {!general.length && !hasOfficers && (
-        <p className="mt-6 rounded bg-gold-100 p-4 text-sm dark:bg-white/10">Contact details have not been added yet. They can be set in the admin settings.</p>
+        <p className="mt-6 rounded bg-gold-100 p-4 text-sm">Contact details have not been added yet. They can be set in the admin settings.</p>
       )}
       <p className="mt-8">To send us a message or ask for a price, use the request form.</p>
       <Link href="/request" className="btn-gold mt-4">Request a quote</Link>

@@ -32,12 +32,12 @@ export default async function Requests({ searchParams }: { searchParams: Promise
         <button className="btn-navy">Filter</button>
       </form>
       {items.length === 0 ? <p className="mt-6">No service requests found.</p> : (
-        <div className="mt-6 overflow-x-auto bg-white dark:bg-navy-900">
+        <div className="mt-6 overflow-x-auto bg-white">
           <table className="w-full text-left text-sm">
-            <thead className="border-b dark:border-white/10"><tr>{["Reference","Customer","Service","Status","Assigned"].map((h) => <th key={h} className="p-3 font-medium">{h}</th>)}</tr></thead>
+            <thead className="border-b"><tr>{["Reference","Customer","Service","Status","Assigned"].map((h) => <th key={h} className="p-3 font-medium">{h}</th>)}</tr></thead>
             <tbody>
               {items.map((r) => (
-                <tr key={r.id} className="border-b last:border-0 dark:border-white/10">
+                <tr key={r.id} className="border-b last:border-0">
                   <td className="p-3"><Link href={`/admin/requests/${r.id}`} className="font-medium underline">{r.reference}</Link></td>
                   <td className="p-3">{r.customerName}</td><td className="p-3">{r.category.name}</td>
                   <td className="p-3">{r.status.replace("_", " ")}</td><td className="p-3">{r.assignee?.name ?? "Unassigned"}</td>

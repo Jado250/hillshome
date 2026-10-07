@@ -59,7 +59,7 @@ export function SettingsForm({ initial }: { initial: Initial }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="mt-6 max-w-3xl space-y-4 bg-white p-6 dark:bg-navy-900">
+    <form onSubmit={onSubmit} className="mt-6 max-w-3xl space-y-4 bg-white p-6">
       <div className="grid gap-4 sm:grid-cols-2">
         <div><label className="label" htmlFor="companyName">Company name</label><input id="companyName" name="companyName" defaultValue={initial.companyName} className="input" /></div>
         <div><label className="label" htmlFor="phone">Phone</label><input id="phone" name="phone" defaultValue={initial.phone} className="input" /></div>

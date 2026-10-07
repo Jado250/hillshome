@@ -18,12 +18,12 @@ export default async function ToursAdmin() {
         <Link href="/admin/tours/new" className="btn-gold">Add tour</Link>
       </div>
       {tours.length === 0 ? <p className="mt-6">No tours yet.</p> : (
-        <div className="mt-6 overflow-x-auto bg-white dark:bg-navy-900">
+        <div className="mt-6 overflow-x-auto bg-white">
           <table className="w-full text-left text-sm">
-            <thead className="border-b dark:border-white/10"><tr>{["Name", "Destination", "Days", "Price", "Status", ""].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
+            <thead className="border-b"><tr>{["Name", "Destination", "Days", "Price", "Status", ""].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
             <tbody>
               {tours.map((t) => (
-                <tr key={t.id} className="border-b last:border-0 dark:border-white/10">
+                <tr key={t.id} className="border-b last:border-0">
                   <td className="p-3">{t.name}{t.isDemo && <span className="ml-2 text-xs text-gold-600">DEMO</span>}</td>
                   <td className="p-3">{t.destination}</td>
                   <td className="p-3">{t.durationDays}</td>

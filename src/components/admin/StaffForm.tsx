@@ -22,7 +22,7 @@ export function StaffForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="mt-8 max-w-md space-y-4 bg-white p-6 dark:bg-navy-900">
+    <form onSubmit={onSubmit} className="mt-8 max-w-md space-y-4 bg-white p-6">
       <h2 className="font-semibold">Add staff member</h2>
       <div><label className="label" htmlFor="s-name">Name</label><input id="s-name" name="name" required className="input" /></div>
       <div><label className="label" htmlFor="s-email">Email</label><input id="s-email" name="email" type="email" required className="input" /></div>

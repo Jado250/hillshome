@@ -51,8 +51,8 @@ export function RequestForm({ category, tourSlug, serviceSlug, tours = [] }: Pro
               {f.options?.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
           ) : <input {...common} type={f.type} min={f.type === "number" ? 1 : undefined} />}
-        {f.help && <p className="mt-1 text-xs text-ink/70 dark:text-white/70">{f.help}</p>}
-        {err && <p id={`${f.name}-err`} role="alert" className="mt-1 text-xs text-red-700 dark:text-red-400">{err}</p>}
+        {f.help && <p className="mt-1 text-xs text-ink/70">{f.help}</p>}
+        {err && <p id={`${f.name}-err`} role="alert" className="mt-1 text-xs text-red-700">{err}</p>}
       </div>
     );
   };
@@ -70,25 +70,25 @@ export function RequestForm({ category, tourSlug, serviceSlug, tours = [] }: Pro
                 <option value="" disabled>Choose…</option>
                 {tours.map((t) => <option key={t.slug} value={t.slug}>{t.name}</option>)}
               </select>
-              {errors.tourSlug && <p id="tourSlug-err" role="alert" className="mt-1 text-xs text-red-700 dark:text-red-400">{errors.tourSlug[0]}</p>}
+              {errors.tourSlug && <p id="tourSlug-err" role="alert" className="mt-1 text-xs text-red-700">{errors.tourSlug[0]}</p>}
             </div>
-          ) : <p className="text-sm text-ink/70 dark:text-white/70">No tours are currently available for booking. Please check again later.</p>
+          ) : <p className="text-sm text-ink/70">No tours are currently available for booking. Please check again later.</p>
         )}
         {categoryFields[category].map(render)}
         {allowsFiles.includes(category) && (
           <div className="sm:col-span-2">
             <label htmlFor="files" className="label">Photos or documents (optional)</label>
             <input id="files" name="files" type="file" multiple accept=".jpg,.jpeg,.png,.pdf" className="input" />
-            <p className="mt-1 text-xs text-ink/70 dark:text-white/70">Up to 5 files, JPG, PNG or PDF, 5 MB each.</p>
-            {errors.files && <p role="alert" className="mt-1 text-xs text-red-700 dark:text-red-400">{errors.files[0]}</p>}
+            <p className="mt-1 text-xs text-ink/70">Up to 5 files, JPG, PNG or PDF, 5 MB each.</p>
+            {errors.files && <p role="alert" className="mt-1 text-xs text-red-700">{errors.files[0]}</p>}
           </div>
         )}
       </div>
-      {formError && <p role="alert" className="rounded bg-red-50 p-3 text-sm text-red-800 dark:bg-red-500/15 dark:text-red-200">{formError}</p>}
+      {formError && <p role="alert" className="rounded bg-red-50 p-3 text-sm text-red-800">{formError}</p>}
       <button type="submit" disabled={busy} className="btn-gold disabled:opacity-60">
         {busy ? "Sending…" : "Send request"}
       </button>
-      <p className="text-xs text-ink/70 dark:text-white/70">Sending a request does not confirm a booking. Our team will review it and contact you.</p>
+      <p className="text-xs text-ink/70">Sending a request does not confirm a booking. Our team will review it and contact you.</p>
     </form>
   );
 }

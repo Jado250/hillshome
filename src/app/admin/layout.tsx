@@ -24,7 +24,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   return (
     <div className="min-h-screen md:grid md:grid-cols-[220px_1fr]">
-      <aside className="bg-navy-950 p-5 text-white dark:border-white/10 md:dark:border-r">
+      <aside className="bg-navy-950 p-5 text-white">
         <p className="font-display text-lg">Hillshome Admin</p>
         <p className="mt-1 text-xs text-white/60">{session.name} · {session.role.replace("_", " ").toLowerCase()}</p>
         <nav aria-label="Admin" className="mt-6 flex flex-wrap gap-2 md:flex-col">

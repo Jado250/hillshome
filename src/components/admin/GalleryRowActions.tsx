@@ -23,7 +23,7 @@ export function GalleryRowActions({ id, published }: { id: string; published: bo
     <div className="mt-2 flex gap-2">
       <button onClick={patch} className="btn-outline text-xs">{published ? "Hide" : "Publish"}</button>
       <button onClick={remove} className="btn-outline text-xs">Delete</button>
-      {msg && <span className="text-xs text-red-700 dark:text-red-400">{msg}</span>}
+      {msg && <span className="text-xs text-red-700">{msg}</span>}
     </div>
   );
 }

@@ -29,7 +29,7 @@ export function RequestActions({ id, status, assigneeId, staff, canAssign }: Pro
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 bg-white p-5 dark:bg-navy-900">
+    <form onSubmit={onSubmit} className="space-y-4 bg-white p-5">
       <h2 className="font-semibold">Update request</h2>
       <div className="grid gap-4 sm:grid-cols-2">
         <div><label htmlFor="status" className="label">Status</label>

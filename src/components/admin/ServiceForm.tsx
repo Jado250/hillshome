@@ -28,7 +28,7 @@ export function ServiceForm({ categories }: { categories: { id: string; name: st
   }
 
   return (
-    <form onSubmit={onSubmit} className="mt-6 max-w-xl space-y-4 bg-white p-6 dark:bg-navy-900">
+    <form onSubmit={onSubmit} className="mt-6 max-w-xl space-y-4 bg-white p-6">
       <h2 className="font-semibold">Add a new service</h2>
       <div><label className="label" htmlFor="sv-category">Category</label>
         <select id="sv-category" name="categoryId" required className="input" defaultValue="">

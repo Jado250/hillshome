@@ -18,7 +18,7 @@ export function CustomerRowActions({ email, count }: { email: string; count: num
   return (
     <span className="flex items-center gap-2">
       <button onClick={remove} className="btn-outline text-xs">Delete</button>
-      {msg && <span className="text-xs text-red-700 dark:text-red-400">{msg}</span>}
+      {msg && <span className="text-xs text-red-700">{msg}</span>}
     </span>
   );
 }
