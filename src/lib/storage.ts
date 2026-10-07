@@ -9,7 +9,9 @@ export interface StorageDriver {
 }
 
 class LocalDriver implements StorageDriver {
-  private root = path.resolve(process.env.UPLOAD_DIR ?? "./uploads");
+  // Vercel serverless functions have a read-only filesystem except /tmp.
+  private root = path.resolve(process.env.UPLOAD_DIR
+    ?? (process.env.VERCEL ? "/tmp/uploads" : "./uploads"));
 
   async save(bytes: Uint8Array, safeName: string) {
     const key = `${randomUUID()}-${safeName}`;
