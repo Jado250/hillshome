@@ -12,11 +12,11 @@ type Faq = { q: string; a: string };
 
 export default async function Home() {
   const [categories, tours, gallery, services, settings] = await Promise.all([
-    listCategories(),
-    db.tour.findMany({ where: { published: true, archivedAt: null }, take: 3, orderBy: { name: "asc" } }),
-    db.galleryItem.findMany({ where: { published: true }, take: 6, orderBy: { createdAt: "desc" } }),
-    db.service.findMany({ where: { published: true, available: true }, include: { category: true }, take: 8, orderBy: { name: "asc" } }),
-    db.siteSetting.findMany(),
+    listCategories().catch(() => []),
+    db.tour.findMany({ where: { published: true, archivedAt: null }, take: 3, orderBy: { name: "asc" } }).catch(() => []),
+    db.galleryItem.findMany({ where: { published: true }, take: 6, orderBy: { createdAt: "desc" } }).catch(() => []),
+    db.service.findMany({ where: { published: true, available: true }, include: { category: true }, take: 8, orderBy: { name: "asc" } }).catch(() => []),
+    db.siteSetting.findMany().catch(() => []),
   ]);
   const s = Object.fromEntries(settings.map((r) => [r.key, r.value])) as Record<string, unknown>;
   const companyName = (s["company.name"] as string) ?? "Hillshome Tours Company LTD";

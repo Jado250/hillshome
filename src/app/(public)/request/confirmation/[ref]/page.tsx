@@ -14,7 +14,7 @@ const METHOD_NOTE: Record<string, string> = {
 export default async function Confirmation({ params }: { params: Promise<{ ref: string }> }) {
   const { ref } = await params;
   const safe = /^HS-REQ-\d{6}$/.test(ref) ? ref : null;
-  const request = safe ? await db.serviceRequest.findUnique({ where: { reference: safe }, select: { contactMethod: true } }) : null;
+  const request = safe ? await db.serviceRequest.findUnique({ where: { reference: safe }, select: { contactMethod: true } }).catch(() => null) : null;
   return (
     <div className="container-x max-w-xl py-20 text-center">
       <h1 className="text-3xl font-semibold">Your request has been received</h1>

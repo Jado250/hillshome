@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "About" };
 
 export default async function About() {
-  const rows = await db.siteSetting.findMany({ where: { key: { startsWith: "about." } } });
+  const rows = await db.siteSetting.findMany({ where: { key: { startsWith: "about." } } }).catch(() => []);
   const s = Object.fromEntries(rows.map((r) => [r.key, r.value])) as Record<string, string | string[]>;
   const blocks = [
     ["Who we are", s["about.intro"]], ["Mission", s["about.mission"]], ["Vision", s["about.vision"]],

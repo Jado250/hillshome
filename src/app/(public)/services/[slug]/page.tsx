@@ -8,12 +8,12 @@ export const dynamic = "force-dynamic";
 type P = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: P): Promise<Metadata> {
-  const c = await getCategory((await params).slug);
+  const c = await getCategory((await params).slug).catch(() => null);
   return c ? { title: c.name, description: c.shortDescription } : {};
 }
 
 export default async function ServiceDetail({ params }: P) {
-  const c = await getCategory((await params).slug);
+  const c = await getCategory((await params).slug).catch(() => null);
   if (!c) notFound();
   return (
     <>

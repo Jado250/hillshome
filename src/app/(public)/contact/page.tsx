@@ -34,7 +34,7 @@ function PersonCard({ title, email, phone }: { title: string; email: string; pho
 }
 
 export default async function Contact() {
-  const rows = await db.siteSetting.findMany({ where: { key: { startsWith: "contact." } } });
+  const rows = await db.siteSetting.findMany({ where: { key: { startsWith: "contact." } } }).catch(() => []);
   const s = Object.fromEntries(rows.map((r) => [r.key, r.value as string]));
   const str = (k: string) => s[k] ?? "";
   const general = [["Phone", str("contact.phone")], ["Email", str("contact.email")],

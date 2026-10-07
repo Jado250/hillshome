@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Services" };
 
 export default async function Services() {
-  const categories = await listCategories();
+  const categories = await listCategories().catch(() => []);
   return (
     <div className="container-x py-16">
       <h1 className="text-3xl font-semibold sm:text-4xl">Our services</h1>

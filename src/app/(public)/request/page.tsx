@@ -12,13 +12,13 @@ type SP = { category?: string; tour?: string; service?: string };
 
 export default async function RequestPage({ searchParams }: { searchParams: Promise<SP> }) {
   const sp = await searchParams;
-  const categories = await listCategories();
+  const categories = await listCategories().catch(() => []);
   const selected = categories.find((c) => c.slug === sp.category && CATEGORY_SLUGS.includes(c.slug as CategorySlug));
   const tours = selected?.slug === "tours"
     ? await db.tour.findMany({
         where: { published: true, archivedAt: null, available: true },
         orderBy: { name: "asc" }, select: { slug: true, name: true },
-      })
+      }).catch(() => [])
     : [];
 
   return (

@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Tours" };
 
 export default async function Tours({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const q = (await searchParams).q?.slice(0, 80);
-  const tours = await listTours(q);
+  const tours = await listTours(q).catch(() => []);
   return (
     <div className="container-x py-16">
       <h1 className="text-3xl font-semibold sm:text-4xl">Tours</h1>

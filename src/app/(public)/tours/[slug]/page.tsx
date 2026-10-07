@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 type P = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: P): Promise<Metadata> {
-  const t = await getTour((await params).slug);
+  const t = await getTour((await params).slug).catch(() => null);
   return t ? { title: t.name, description: t.shortDescription } : {};
 }
 
@@ -19,7 +19,7 @@ const List = ({ title, items }: { title: string; items: string[] }) =>
   ) : null;
 
 export default async function TourDetail({ params }: P) {
-  const t = await getTour((await params).slug);
+  const t = await getTour((await params).slug).catch(() => null);
   if (!t) notFound();
   return (
     <div className="container-x max-w-3xl py-16">
