@@ -103,6 +103,7 @@ export async function Footer() {
             {str(s["contact.email"]) && <li>{str(s["contact.email"])}</li>}
             {str(s["contact.address"]) && <li>{str(s["contact.address"])}</li>}
             <li><Link href="/contact">Send a message</Link></li>
+            <li><Link href="/#">Reach out to our support team</Link></li>
           </ul>
         </div>
       </div>
