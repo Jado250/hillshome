@@ -163,7 +163,9 @@ async function main() {
       "A request reference and status updates you can follow",
     ],
     "home.testimonials": [
-      { name: "[Demo] Client", role: "Replace with a real testimonial", quote: "Placeholder testimonial — edit or delete this in Admin → Settings." },
+      { name: "[Demo] Transport client", role: "Replace with a real testimonial", quote: "Our staff shuttle has run on time every day. Booking was simple and the team communicates clearly." },
+      { name: "[Demo] Tour guest", role: "Replace with a real testimonial", quote: "A wonderful day around Kigali — well organised from pickup to drop-off. We will book again." },
+      { name: "[Demo] Construction client", role: "Replace with a real testimonial", quote: "They gave a clear quotation, kept us updated, and finished the work as agreed." },
     ],
     "home.faq": [
       { q: "How do I request a service?", a: "Pick a service, fill in the form, and you will receive a reference number. Our team reviews it and gets back to you with a quotation." },
