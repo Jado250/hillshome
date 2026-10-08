@@ -30,6 +30,12 @@ const prodOnlyHeaders = process.env.NODE_ENV === "production" ? [
 const nextConfig = {
   poweredByHeader: false,
   serverExternalPackages: ["argon2"],
+  images: {
+    remotePatterns: [
+      // Vercel Blob public URLs (used when BLOB_READ_WRITE_TOKEN is set)
+      { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
+    ],
+  },
   async headers() {
     return [{ source: "/:path*", headers: [...securityHeaders, ...prodOnlyHeaders] }];
   },

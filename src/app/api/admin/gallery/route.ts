@@ -24,8 +24,8 @@ export async function POST(req: Request) {
       const check = checkFile(file.name, file.type, bytes);
       if (!check.ok) throw new HttpError(400, check.error);
       if (!check.mime.startsWith("image/")) throw new HttpError(400, "Only image files are allowed here.");
-      const key = await storage.save(bytes, check.safeName);
-      url = `/api/uploads/${encodeURIComponent(key)}`;
+      const key = await storage.save(bytes, check.safeName, check.mime);
+      url = storage.resolveUrl(key);
     }
     if (!url) throw new HttpError(400, "Upload an image or provide an image URL.");
 

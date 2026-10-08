@@ -54,7 +54,7 @@ export async function createServiceRequest(
   const saved = [] as { key: string; name: string; mime: string; size: number }[];
   for (const [i, c] of checked.entries()) {
     saved.push({
-      key: await storage.save(c.bytes, c.safeName),
+      key: await storage.save(c.bytes, c.safeName, c.mime),
       name: c.safeName, mime: c.mime, size: files[i].size,
     });
   }
