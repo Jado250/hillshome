@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { getSession } from "@/lib/auth/session";
 import { can } from "@/lib/auth/rbac";
-import { LogoutButton } from "@/components/admin/LogoutButton";
+import { AdminSidebar, type AdminNavLink } from "@/components/admin/AdminSidebar";
 
 export const metadata = { title: "Admin", robots: { index: false } };
 
@@ -9,30 +8,27 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const session = await getSession();
   if (!session) return <>{children}</>; // login page (middleware guards the rest)
 
-  const links = [
-    { href: "/admin", label: "Dashboard", show: true },
-    { href: "/admin/requests", label: "Requests", show: true },
-    { href: "/admin/tours", label: "Tours", show: can(session.role, "tours:manage") },
-    { href: "/admin/services", label: "Services", show: can(session.role, "services:manage") },
-    { href: "/admin/quotes", label: "Quotes", show: can(session.role, "quotes:manage") },
-    { href: "/admin/gallery", label: "Gallery", show: can(session.role, "gallery:manage") },
-    { href: "/admin/customers", label: "Customers", show: can(session.role, "requests:manage") },
-    { href: "/admin/staff", label: "Staff", show: can(session.role, "staff:manage") },
-    { href: "/admin/reports", label: "Reports", show: can(session.role, "reports:view") },
-    { href: "/admin/settings", label: "Settings", show: can(session.role, "settings:manage") },
-  ].filter((l) => l.show);
+  const links: AdminNavLink[] = ([
+    { href: "/admin", label: "Dashboard", icon: "dashboard", show: true },
+    { href: "/admin/requests", label: "Requests", icon: "requests", show: true },
+    { href: "/admin/tours", label: "Tours", icon: "tours", show: can(session.role, "tours:manage") },
+    { href: "/admin/services", label: "Services", icon: "services", show: can(session.role, "services:manage") },
+    { href: "/admin/quotes", label: "Quotes", icon: "quotes", show: can(session.role, "quotes:manage") },
+    { href: "/admin/gallery", label: "Gallery", icon: "gallery", show: can(session.role, "gallery:manage") },
+    { href: "/admin/customers", label: "Customers", icon: "customers", show: can(session.role, "requests:manage") },
+    { href: "/admin/staff", label: "Staff", icon: "staff", show: can(session.role, "staff:manage") },
+    { href: "/admin/reports", label: "Reports", icon: "reports", show: can(session.role, "reports:view") },
+    { href: "/admin/settings", label: "Settings", icon: "settings", show: can(session.role, "settings:manage") },
+  ] as (AdminNavLink & { show: boolean })[]).filter((l) => l.show);
 
   return (
-    <div className="min-h-screen md:grid md:grid-cols-[220px_1fr]">
-      <aside className="bg-navy-950 p-5 text-white">
-        <p className="font-display text-lg">Hillshome Admin</p>
-        <p className="mt-1 text-xs text-white/60">{session.name} · {session.role.replace("_", " ").toLowerCase()}</p>
-        <nav aria-label="Admin" className="mt-6 flex flex-wrap gap-2 md:flex-col">
-          {links.map((l) => <Link key={l.href} href={l.href} className="rounded px-2 py-1.5 text-sm hover:bg-white/10">{l.label}</Link>)}
-        </nav>
-        <LogoutButton />
-      </aside>
-      <div className="p-4 sm:p-6">{children}</div>
+    <div className="min-h-screen md:flex">
+      <AdminSidebar
+        links={links}
+        userName={session.name}
+        userRole={session.role.replace("_", " ").toLowerCase()}
+      />
+      <div className="min-w-0 flex-1 p-4 sm:p-6">{children}</div>
     </div>
   );
 }

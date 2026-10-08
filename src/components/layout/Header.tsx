@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileNav } from "@/components/layout/MobileNav";
 
 export const NAV = [
   { href: "/", label: "Home" },
@@ -27,16 +28,7 @@ export function Header() {
         </nav>
         <Link href="/request" className="btn-gold hidden md:inline-flex">Request a Quote</Link>
 
-        {/* Mobile menu: no JS needed, uses <details> */}
-        <details className="relative md:hidden">
-          <summary className="btn-outline cursor-pointer list-none" aria-label="Open menu">Menu</summary>
-          <nav aria-label="Mobile" className="absolute right-0 mt-2 w-56 rounded border border-navy-900/10 bg-white p-3 shadow-lg">
-            {NAV.map((n) => (
-              <Link key={n.href} href={n.href} className="block rounded px-2 py-2 text-sm hover:bg-navy-100">{n.label}</Link>
-            ))}
-            <Link href="/request" className="btn-gold mt-2 w-full">Request a Quote</Link>
-          </nav>
-        </details>
+        <MobileNav links={NAV} />
       </div>
     </header>
   );
