@@ -55,7 +55,7 @@ export function AdminSidebar({ links, userName, userRole }: {
         const active = pathname === l.href || (l.href !== "/admin" && pathname.startsWith(l.href + "/"));
         return (
           <Link key={l.href} href={l.href} onClick={onNavigate} title={l.label} aria-current={active ? "page" : undefined}
-            className={`flex items-center gap-3 rounded px-3 py-2 text-sm transition ${active ? "bg-gold-500 font-semibold text-navy-950" : "hover:bg-white/10"}`}>
+            className={`flex items-center gap-3 rounded py-2 text-sm transition ${showLabels ? "px-3" : "justify-center px-0"} ${active ? "bg-gold-500 font-semibold text-navy-950" : "hover:bg-white/10"}`}>
             <Icon name={l.icon} />
             {showLabels && <span>{l.label}</span>}
           </Link>
@@ -64,11 +64,19 @@ export function AdminSidebar({ links, userName, userRole }: {
     </nav>
   );
 
+  // eslint-disable-next-line @next/next/no-img-element
+  const Logo = ({ size = "h-10 w-10" }: { size?: string }) => (
+    <img src="/logo.jpeg" alt="Hillshome Tours logo" className={`${size} rounded-full object-cover`} />
+  );
+
   return (
     <>
       {/* Mobile top bar */}
       <div className="flex items-center justify-between bg-navy-950 p-4 text-white md:hidden">
-        <p className="font-display">Hillshome Admin</p>
+        <span className="flex items-center gap-2">
+          <Logo size="h-9 w-9" />
+          <p className="font-display">Hillshome Admin</p>
+        </span>
         <button type="button" onClick={() => setMobileOpen((o) => !o)}
           aria-expanded={mobileOpen} aria-label={mobileOpen ? "Close menu" : "Open menu"}
           className="inline-flex h-10 w-10 items-center justify-center rounded border border-white/25">
@@ -82,7 +90,10 @@ export function AdminSidebar({ links, userName, userRole }: {
           <div aria-hidden="true" className="absolute inset-0 bg-black/50" onClick={() => setMobileOpen(false)} />
           <aside className="absolute inset-y-0 left-0 flex w-64 flex-col bg-navy-950 p-5 text-white">
             <div className="flex items-center justify-between">
-              <p className="font-display text-lg">Hillshome Admin</p>
+              <span className="flex items-center gap-2">
+                <Logo size="h-9 w-9" />
+                <p className="font-display text-lg">Hillshome Admin</p>
+              </span>
               <button type="button" onClick={() => setMobileOpen(false)} aria-label="Close menu"
                 className="inline-flex h-9 w-9 items-center justify-center rounded border border-white/25">
                 <Icon name="close" />
@@ -97,8 +108,13 @@ export function AdminSidebar({ links, userName, userRole }: {
 
       {/* Desktop sidebar */}
       <aside className={`hidden min-h-screen flex-col bg-navy-950 p-5 text-white transition-all md:flex ${collapsed ? "w-[76px]" : "w-[220px]"}`}>
-        <div className="flex items-center justify-between gap-2">
-          {!collapsed && <p className="font-display text-lg">Hillshome Admin</p>}
+        <div className={`flex gap-2 ${collapsed ? "flex-col items-center" : "items-center justify-between"}`}>
+          {collapsed ? <Logo size="h-10 w-10" /> : (
+            <span className="flex items-center gap-2">
+              <Logo size="h-10 w-10" />
+              <p className="font-display text-lg">Hillshome Admin</p>
+            </span>
+          )}
           <button type="button" onClick={() => setCollapsed((c) => !c)}
             aria-expanded={!collapsed} aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             title={collapsed ? "Expand sidebar" : "Collapse sidebar"}

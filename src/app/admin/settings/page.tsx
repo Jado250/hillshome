@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { getSession } from "@/lib/auth/session";
 import { can } from "@/lib/auth/rbac";
 import { SettingsForm } from "@/components/admin/SettingsForm";
+import { testimonialsToText, faqToText, socialLinksToText } from "@/lib/settings/text";
 
 export const dynamic = "force-dynamic";
 
@@ -27,9 +28,9 @@ export default async function SettingsAdmin() {
     vision: str(s["about.vision"]),
     values: arr(s["about.values"]).join("\n"),
     whyChoose: arr(s["home.whyChoose"]).join("\n"),
-    socialLinks: JSON.stringify(s["social.links"] ?? [], null, 2),
-    testimonials: JSON.stringify(s["home.testimonials"] ?? [], null, 2),
-    faq: JSON.stringify(s["home.faq"] ?? [], null, 2),
+    socialLinks: socialLinksToText(s["social.links"]),
+    testimonials: testimonialsToText(s["home.testimonials"]),
+    faq: faqToText(s["home.faq"]),
   };
   return (
     <div>
