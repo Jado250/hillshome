@@ -55,6 +55,14 @@ async function main() {
   }
 
   // 2. Safety: never silently wipe a live database.
+  const srcHost = new URL(process.env.SOURCE_DATABASE_URL).host + new URL(process.env.SOURCE_DATABASE_URL).pathname;
+  const destHost = new URL(process.env.DEST_DATABASE_URL).host + new URL(process.env.DEST_DATABASE_URL).pathname;
+  console.log("source:", new URL(process.env.SOURCE_DATABASE_URL).host);
+  console.log("dest:  ", new URL(process.env.DEST_DATABASE_URL).host);
+  if (srcHost === destHost) {
+    console.log("Source and destination are the SAME database. Aborting.");
+    process.exit(1);
+  }
   const destRequests = await dest.serviceRequest.count();
   if (destRequests > 0 && process.env.ALLOW_OVERWRITE !== "true") {
     console.log(`Destination already has ${destRequests} request(s). Set ALLOW_OVERWRITE=true to replace them. Aborting.`);
